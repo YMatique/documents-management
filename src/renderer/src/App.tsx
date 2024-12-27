@@ -5,6 +5,10 @@
 import { MainContent, RootLayout } from './components/AppLayout'
 // import CustomHeader from './components/CustomHeader'
 import SideBar from './components/Sidebar'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import Category from './pages/Category'
 
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -51,16 +55,28 @@ import SideBar from './components/Sidebar'
 function App(): JSX.Element {
   return (
     <RootLayout>
-      {/* <CustomHeader /> */}
-      <SideBar>
-        <nav className="flex-1">
-          <h4 className="text-primary text-lg font-semibold p-4">Doc Manag</h4>
-          <ul className="space-y-2 p-4 mt-4 text-gray-400">
-            <li>jkl</li>
-          </ul>
-        </nav>
-      </SideBar>
-      <MainContent className=""></MainContent>
+      <Router>
+        <SideBar>
+          <nav className="flex-1">
+            <h4 className="text-primary text-lg font-semibold p-4">Doc Manag</h4>
+            <ul className="space-y-2 p-4 mt-4 text-gray-400">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About=</Link>
+              </li>
+            </ul>
+          </nav>
+        </SideBar>
+        <MainContent>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/about" element={<Category />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
+          </Routes>
+        </MainContent>
+      </Router>
     </RootLayout>
   )
 }
