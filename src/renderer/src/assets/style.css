@@ -4,13 +4,13 @@
 
 @layer base {
   #root {
-    @apply h-full;
+    @apply h-full w-full;
   }
   html,
   body {
-    @apply h-full;
+    @apply h-full w-full;
     @apply bg-transparent;
-    @apply font-mono antialiased;
+    @apply antialiased;
     @apply overflow-hidden;
   }
 }

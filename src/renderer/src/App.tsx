@@ -2,6 +2,8 @@
 // import electronLogo from './assets/electron.svg'
 // import Button from './components/Button'
 
+import { MainContent, RootLayout } from './components/AppLayout'
+// import CustomHeader from './components/CustomHeader'
 import SideBar from './components/Sidebar'
 
 // function App(): JSX.Element {
@@ -48,13 +50,18 @@ import SideBar from './components/Sidebar'
 
 function App(): JSX.Element {
   return (
-    <>
-      <div className="h-full flex bg-[#1b1b1f]/50">
-        <div className="z-10">
-          <SideBar></SideBar>
-        </div>
-      </div>
-    </>
+    <RootLayout>
+      {/* <CustomHeader /> */}
+      <SideBar>
+        <nav className="flex-1">
+          <h4 className="text-primary text-lg font-semibold p-4">Doc Manag</h4>
+          <ul className="space-y-2 p-4 mt-4 text-gray-400">
+            <li>jkl</li>
+          </ul>
+        </nav>
+      </SideBar>
+      <MainContent className=""></MainContent>
+    </RootLayout>
   )
 }
 export default App
