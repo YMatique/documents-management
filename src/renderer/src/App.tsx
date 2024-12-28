@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Category from './pages/Category'
 import CustomHeader from './components/CustomHeader'
+import { NavLink } from 'react-router-dom'
 
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -75,9 +76,9 @@ function App(): JSX.Element {
                 </Link>
               </li>
               <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <Link to="/category" className="w-full cursor-default">
+                <NavLink to="/category" className="({isActive}) w-full cursor-default">
                   Categoria
-                </Link>
+                </NavLink>
               </li>
               <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
                 <Link to="/" className="w-full cursor-default">
