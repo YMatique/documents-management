@@ -1,5 +1,4 @@
 import { ComponentProps } from 'react'
-import CustomHeader from './CustomHeader'
 
 export const RootLayout = ({
   children,
@@ -20,11 +19,10 @@ export const MainContent = ({
 }: ComponentProps<'div'>): JSX.Element => {
   return (
     <div
-      className={`flex-grow flex flex-col  bg-[#1b1b1f]/90 border-l-primary ${className}`}
+      className={`flex-grow flex flex-col pt-4  bg-[#1b1b1f] bg-opacity-95 border-l-primary ${className}`}
       {...props}
     >
-      <CustomHeader />
-      <div className="p-4 flex-grow flex flex-col">{children}</div>
+      <div className="p-4 flex-grow flex flex-col ">{children}</div>
     </div>
   )
 }

@@ -3,12 +3,12 @@
 // import Button from './components/Button'
 
 import { MainContent, RootLayout } from './components/AppLayout'
-// import CustomHeader from './components/CustomHeader'
 import SideBar from './components/Sidebar'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Category from './pages/Category'
+import CustomHeader from './components/CustomHeader'
 
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -54,26 +54,63 @@ import Category from './pages/Category'
 
 function App(): JSX.Element {
   return (
-    <RootLayout>
+    <RootLayout className="">
       <Router>
+        <CustomHeader />
         <SideBar>
           <nav className="flex-1">
-            <h4 className="text-primary text-lg font-semibold p-4">Doc Manag</h4>
-            <ul className="space-y-2 p-4 mt-4 text-gray-400">
-              <li>
-                <Link to="/">Home</Link>
+            <div className="p-4">
+              <h4 className="text-gray-300 text-lg font-medium">Document Management</h4>
+              <h4 className="text-primary text-lg  italic">Free Lawyer</h4>
+            </div>
+            <ul className="space-y-0 font text-l mt-4 text-gray-300">
+              <li className="active:text-primary cursor-default bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2">
+                <Link to="/" className="w-full cursor-default">
+                  Dashboard
+                </Link>
               </li>
-              <li>
-                <Link to="/about">About=</Link>
+              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
+                <Link to="/" className="w-full cursor-default">
+                  Casos
+                </Link>
               </li>
+              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
+                <Link to="/category" className="w-full cursor-default">
+                  Categoria
+                </Link>
+              </li>
+              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
+                <Link to="/" className="w-full cursor-default">
+                  Documentos
+                </Link>
+              </li>
+              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
+                <Link to="/" className="w-full cursor-default">
+                  Advogados
+                </Link>
+              </li>
+              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
+                <Link to="/" className="w-full cursor-default">
+                  Clientes
+                </Link>
+              </li>
+              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
+                <Link to="/" className="w-full cursor-default">
+                  Configuração
+                </Link>
+              </li>
+              {/* <li className="hover:bg-[#111318]">
+                <Link to="/about" className="">
+                  Casos
+                </Link>
+              </li> */}
             </ul>
           </nav>
         </SideBar>
         <MainContent>
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/about" element={<Category />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route path="/category" element={<Category />} />
           </Routes>
         </MainContent>
       </Router>

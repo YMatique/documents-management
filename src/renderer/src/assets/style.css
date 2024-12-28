@@ -12,5 +12,12 @@
     @apply bg-transparent;
     @apply antialiased;
     @apply overflow-hidden;
+    @apply select-none;
+  }
+  header {
+    -webkit-app-region: drag;
+  }
+  button {
+    -webkit-app-region: no-drag;
   }
 }

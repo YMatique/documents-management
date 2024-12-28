@@ -6,16 +6,15 @@ function CustomHeader(): JSX.Element {
   // const handleClose = () => ipcRenderer.send('window:close');
 
   return (
-    <>
-      <div className="flex items-center justify-between bg-transparent text-white p-2">
-        <div className="text-lg font-semibold">Meu App</div>
+    <header className="absolute inset-0 h-8 bg-transparent">
+      <div className="flex items-end  justify-end bg-transparent text-white p-2">
         <div className="flex space-x-2">
-          <button className="w-4 h-4 bg-gray-600 hover:bg-gray-500 rounded"></button>
-          <button className="w-4 h-4 bg-gray-600 hover:bg-gray-500 rounded"></button>
-          <button className="w-4 h-4 bg-red-600 hover:bg-red-500 rounded"></button>
+          <button className="w-4 h-4 bg-green-600 rounded-full"></button>
+          <button className="w-4 h-4 bg-yellow-400 rounded-full"></button>
+          <button className="w-4 h-4 bg-red-600 hover:bg-red-500 rounded-full text-sm"></button>
         </div>
       </div>
-    </>
+    </header>
   )
 }
 
