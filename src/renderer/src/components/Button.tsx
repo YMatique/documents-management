@@ -6,11 +6,10 @@ interface ButtonProps {
 function Button({ label, className, onClick }: ButtonProps): JSX.Element {
   return (
     <>
-      <button className={'p-4 bg-slate-700 text-white' + { className }} onClick={onClick}>
+      <button className={`text-white p-2 text-sm font-light  ${className}`} onClick={onClick}>
         {label}
       </button>
     </>
   )
 }
-
 export default Button

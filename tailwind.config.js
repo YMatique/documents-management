@@ -5,11 +5,13 @@ module.exports = {
     extend: {
       colors: {
         primary: '#21ca78',
-        secondary: '#f0dc4e',
+        secondary: '#e6a31d',
         tertial: '#f42a8b'
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif']
+        roboto: ['Roboto', 'sans-serif'],
+        opensans: ['Open Sans', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       }
     }
   },

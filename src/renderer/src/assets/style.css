@@ -8,46 +8,59 @@
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto/Roboto-Bold.ttf');
   font-weight: 700;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto/Roboto-Italic.ttf');
   font-weight: 400;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto/Roboto-Medium.ttf');
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto/Roboto-MediumItalic.ttf');
   font-weight: 500;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto/Roboto-Light.ttf');
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto/Roboto-LightItalic.ttf');
   font-weight: 300;
   font-style: italic;
 }
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf');
+}
+
 @layer base {
   #root {
     @apply h-full w-full;
   }
+
   html,
   body {
     @apply h-full w-full;
@@ -56,9 +69,11 @@
     @apply overflow-hidden;
     @apply select-none;
   }
+
   header {
     -webkit-app-region: drag;
   }
+
   button {
     -webkit-app-region: no-drag;
   }
