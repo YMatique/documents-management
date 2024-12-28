@@ -5,7 +5,6 @@
 import { MainContent, RootLayout } from './components/AppLayout'
 import SideBar from './components/Sidebar'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Category from './pages/Category'
 import CustomHeader from './components/CustomHeader'
@@ -61,50 +60,94 @@ function App(): JSX.Element {
         <SideBar>
           <nav className="flex-1">
             <div className="p-4">
-              <h4 className="text-gray-300 text-lg font-medium">Document Management</h4>
-              <h4 className="text-primary text-lg  italic">Free Lawyer</h4>
+              <h4 className="text-gray-300 text-base ">Document Management</h4>
+              <h4 className="text-primary text-base  italic">Free Lawyer</h4>
             </div>
-            <ul className="space-y-0 font text-l mt-4 text-gray-300">
-              <li className="active:text-primary cursor-default bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2">
-                <Link to="/" className="w-full cursor-default">
+            <ul className="space-y-0  text-sm mt-4 text-gray-300">
+              <li className="flex">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Dashboard
-                </Link>
+                </NavLink>
               </li>
-              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <Link to="/" className="w-full cursor-default">
+              <li className="flex">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Casos
-                </Link>
+                </NavLink>
               </li>
-              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <NavLink to="/category" className="({isActive}) w-full cursor-default">
+              <li className="flex">
+                <NavLink
+                  to="/category"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Categoria
                 </NavLink>
               </li>
-              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <Link to="/" className="w-full cursor-default">
+              <li className=" flex">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Documentos
-                </Link>
+                </NavLink>
               </li>
-              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <Link to="/" className="w-full cursor-default">
+              <li className="flex ">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Advogados
-                </Link>
+                </NavLink>
               </li>
-              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <Link to="/" className="w-full cursor-default">
+              <li className=" flex ">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Clientes
-                </Link>
+                </NavLink>
               </li>
-              <li className=" cursor-default hover:bg-[#1f232c] p-3 pl-4 ">
-                <Link to="/" className="w-full cursor-default">
+              <li className="flex ">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                  }
+                >
                   Configuração
-                </Link>
+                </NavLink>
               </li>
-              {/* <li className="hover:bg-[#111318]">
-                <Link to="/about" className="">
-                  Casos
-                </Link>
-              </li> */}
             </ul>
           </nav>
         </SideBar>
