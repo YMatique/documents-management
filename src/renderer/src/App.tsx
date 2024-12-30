@@ -16,6 +16,7 @@ import { FaRegFolder } from 'react-icons/fa6'
 import { FaUserTie } from 'react-icons/fa6'
 import { FaUsers } from 'react-icons/fa6'
 import { FaGears } from 'react-icons/fa6'
+import Cases from './pages/Cases'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -85,7 +86,7 @@ function App(): JSX.Element {
               </li>
               <li className="flex">
                 <NavLink
-                  to="/"
+                  to="/cases"
                   className={({ isActive }) =>
                     isActive
                       ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
@@ -168,7 +169,7 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/category" element={<Category />} />
-            {/* <Route path="/category" element={<Category />} /> */}
+            <Route path="/cases" element={<Cases />} />
           </Routes>
         </MainContent>
       </Router>
