@@ -168,6 +168,7 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/category" element={<Category />} />
+            {/* <Route path="/category" element={<Category />} /> */}
           </Routes>
         </MainContent>
       </Router>

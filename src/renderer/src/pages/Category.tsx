@@ -4,6 +4,8 @@ import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import ButtonDelete from '@renderer/components/Buttons/ButtonDelete'
 import ButtonEdit from '@renderer/components/Buttons/ButtonEdit'
 import Modal from '@renderer/components/Modal/Modal'
+import ModalDelete from '@renderer/components/Modal/ModalDelete'
+import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
 const Category: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -19,7 +21,7 @@ const Category: React.FC = () => {
             <h4 className="text-lg font-normal">Categorias</h4>
             <p className="font-light text-sm">Resumo dos de toda a aplicação</p>
           </div>
-          <div className="flex justify-center items-end mr-4 w-1/2 flex-col">
+          <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
             <ButtonPrimary label="Cadastrar" className="" onClick={openModal} />
           </div>
         </div>
@@ -102,7 +104,8 @@ const Category: React.FC = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                         LA No. 1 Lake Park
                       </td>
-                      <td className="px-6 py-4 space-x-1 whitespace-nowrap text-end text-sm font-medium">
+                      <td className="px-1 py-4 space-x-1 whitespace-nowrap text-end text-sm font-medium">
+                        <ButtonDetails className="" onClick={() => {}} />
                         <ButtonEdit className="" onClick={() => {}}></ButtonEdit>
                         <ButtonDelete className="" onClick={() => {}} />
                       </td>
@@ -129,7 +132,7 @@ const Category: React.FC = () => {
           </div>
         </div>
       </div>
-      <Modal
+      {/* <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
         footer={
@@ -151,7 +154,21 @@ const Category: React.FC = () => {
         }
       >
         <p>Este é o conteúdo do modal.</p>
-      </Modal>
+      </Modal> */}
+
+      <ModalDelete
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Eliminar a Categoria"
+        onDelete={() => {
+          console.log('Categoria')
+        }}
+      >
+        <p className="text-gray-500 dark:text-neutral-500">
+          Permanently remove your Personal Account and all of its contents from the Vercel platform.
+          This action is not reversible, so please continue with caution.
+        </p>
+      </ModalDelete>
     </div>
   )
 }

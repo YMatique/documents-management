@@ -5,7 +5,7 @@ interface ButtonProps {
 }
 function ButtonEdit({ onClick, className }: ButtonProps): JSX.Element {
   return (
-    <button className={`p-2 pl-3 pr-3 text-base  text-primary ${className}`} onClick={onClick}>
+    <button className={`p-2 text-base  text-primary ${className}`} onClick={onClick}>
       <FaPenToSquare />
     </button>
   )
