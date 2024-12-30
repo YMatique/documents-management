@@ -136,14 +136,14 @@ const Category: React.FC = () => {
           <div className="flex justify-end gap-2">
             <button
               onClick={closeModal}
-              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              className="px-2 py-2 bg-gray-500 text-white text-sm hover:bg-gray-600"
             >
               Cancelar
             </button>
             <button
               type="submit"
               form="formulario-modal"
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-2 py-2 bg-blue-500 text-white hover:bg-blue-600"
             >
               Salvar
             </button>

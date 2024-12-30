@@ -79,7 +79,6 @@ function App(): JSX.Element {
                       : ' cursor-default w-full flex hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
-                  {' '}
                   <FaHouse className="mr-4 text-lg" />
                   Dashboard
                 </NavLink>
@@ -89,11 +88,11 @@ function App(): JSX.Element {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
-                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                      ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full flex hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
-                  <FaRegFolder />
+                  <FaRegFolder className="mr-4 text-lg" />
                   Casos
                 </NavLink>
               </li>
@@ -102,7 +101,7 @@ function App(): JSX.Element {
                   to="/category"
                   className={({ isActive }) =>
                     isActive
-                      ? 'cursor-default w-full flex itens-center bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      ? 'cursor-default w-full flex text-primary itens-center bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
                       : ' cursor-default w-full flex itens-center hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
@@ -115,8 +114,8 @@ function App(): JSX.Element {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? 'cursor-default w-full bg-[#1f232c] p-3  pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
-                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                      ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3  pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full flex hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
                   <FaRegFileLines className="mr-4 text-lg" />
@@ -128,11 +127,11 @@ function App(): JSX.Element {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
-                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                      ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full flex hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
-                  <FaUserTie />
+                  <FaUserTie className="mr-4 text-lg" />
                   Advogados
                 </NavLink>
               </li>
@@ -141,11 +140,11 @@ function App(): JSX.Element {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
-                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                      ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full flex hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
-                  <FaUsers />
+                  <FaUsers className="mr-4 text-lg" />
                   Clientes
                 </NavLink>
               </li>
@@ -154,11 +153,11 @@ function App(): JSX.Element {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? 'cursor-default w-full bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
-                      : ' cursor-default w-full hover:bg-[#1f232c] p-3 pl-4 '
+                      ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
+                      : ' cursor-default w-full flex hover:bg-[#1f232c] p-3 pl-4 '
                   }
                 >
-                  <FaGears />
+                  <FaGears className="mr-4 text-lg" />
                   Configuração
                 </NavLink>
               </li>
