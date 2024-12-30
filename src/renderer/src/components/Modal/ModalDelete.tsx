@@ -6,27 +6,12 @@ interface ModalProps {
   onDelete: () => void // Função para
   title: string //
   children: React.ReactNode // Conteúdo do modal
-  footer?: React.ReactNode
 }
 
 const ModalDelete: React.FC<ModalProps> = ({ isOpen, onClose, children, title, onDelete }) => {
   if (!isOpen) return null
 
   return (
-    // <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
-    //   <div className="bg-[#1b1b1f]  shadow-lg max-w-md w-full ">
-    //     <div className=" mb-4 border-b border-b-gray-600">
-    //       <div className="p-4 flex justify-between items-center">
-    //         <h2 className="text-base font-bold">Título do Modal</h2>
-    //         <button className="text-gray-400 hover:text-gray-600" onClick={onClose}>
-    //           ✖
-    //         </button>
-    //       </div>
-    //     </div>
-    //     <div className="p-4">{children}</div>
-    //     {footer && <div className="border-t border-t-gray-600 p-4">{footer}</div>}
-    //   </div>
-    // </div>
     <div
       id="hs-danger-alert"
       className="hs-overlay  size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto"
@@ -101,12 +86,6 @@ const ModalDelete: React.FC<ModalProps> = ({ isOpen, onClose, children, title, o
             >
               Eliminar
             </button>
-            {/* <a
-              className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:pointer-events-none"
-              href="#"
-            >
-              Eliminar
-            </a> */}
           </div>
         </div>
       </div>

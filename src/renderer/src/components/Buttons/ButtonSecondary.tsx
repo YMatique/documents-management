@@ -6,7 +6,7 @@ interface ButtonProps {
 function ButtonSecondary({ label, onClick, className }: ButtonProps): JSX.Element {
   return (
     <button
-      className={`bg-secondary p-2 pl-4 pr-4 text-base hover:bg-secondary/80 text-[#1b1b1f] ${className}`}
+      className={`bg-secondary py-2 px-3 text-base hover:bg-secondary/80 text-[#1b1b1f] ${className}`}
       onClick={onClick}
     >
       {label}
