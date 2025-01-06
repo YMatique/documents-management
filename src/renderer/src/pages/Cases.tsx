@@ -49,7 +49,9 @@ const Cases: React.FC = () => {
         </div>
       </HeaderPage>
       <div className="flex flex-col">
-        <Dropdown label="Actions" items={dropdownItems} />
+        <div className="flex mb-4">
+          <Dropdown label="Categorias" items={dropdownItems} />
+        </div>
         <div className="-m-1.5 overflow-x-auto">
           <div className="p-1.5 min-w-full inline-block align-middle">
             <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">

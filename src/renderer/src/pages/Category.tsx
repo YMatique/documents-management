@@ -4,8 +4,9 @@ import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import ButtonDelete from '@renderer/components/Buttons/ButtonDelete'
 import ButtonEdit from '@renderer/components/Buttons/ButtonEdit'
 import Modal from '@renderer/components/Modal/Modal'
-import ModalDelete from '@renderer/components/Modal/ModalDelete'
+// import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
+import FormCategory from '@renderer/components/Forms/FormCategory'
 const Category: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -132,7 +133,7 @@ const Category: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* <Modal
+      <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
         footer={
@@ -153,10 +154,10 @@ const Category: React.FC = () => {
           </div>
         }
       >
-        <p>Este é o conteúdo do modal.</p>
-      </Modal> */}
+        <FormCategory />
+      </Modal>
 
-      <ModalDelete
+      {/* <ModalDelete
         isOpen={isModalOpen}
         onClose={closeModal}
         title="Eliminar a Categoria"
@@ -168,7 +169,7 @@ const Category: React.FC = () => {
           Permanently remove your Personal Account and all of its contents from the Vercel platform.
           This action is not reversible, so please continue with caution.
         </p>
-      </ModalDelete>
+      </ModalDelete> */}
     </div>
   )
 }
