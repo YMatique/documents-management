@@ -10,7 +10,7 @@ function FormCategory(): JSX.Element {
             type="email"
             id="input-label"
             name=""
-            className="py-3 px-4 block w-full ring-primary border focus:border-primary outline-none"
+            className="p-2.5 block w-full ring-primary border focus:border-primary outline-none"
             placeholder="you@site.com"
           />
         </div>

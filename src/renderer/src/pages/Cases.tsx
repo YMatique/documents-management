@@ -36,7 +36,7 @@ const Cases: React.FC = () => {
     }
   ]
   return (
-    <div className="flex flex-col text-gray-300 text-sm">
+    <div className="flex flex-col  text-sm">
       <HeaderPage className="mb-8">
         <div className="flex">
           <div className="flex w-1/2 flex-col">
@@ -57,7 +57,7 @@ const Cases: React.FC = () => {
             <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
               <div className="overflow-hidden">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-                  <thead className=" text-gray-300 uppercase dark:text-gray-300">
+                  <thead className=" uppercase ">
                     <tr>
                       <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
                         Título
@@ -77,7 +77,7 @@ const Cases: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody className="border-b border-b-gray-50">
-                    <tr className="hover:bg-[#1f232c]">
+                    <tr className="hover:bg-slate-100 dark:hover:bg-[#1f232c]">
                       <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
                         John Brown
                       </td>
