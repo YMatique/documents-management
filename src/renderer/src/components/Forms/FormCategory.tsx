@@ -4,7 +4,7 @@ function FormCategory(): JSX.Element {
   return (
     <form action="">
       <div className="w-full flex flex-col">
-        <div className="max-w-sm">
+        <div>
           <Input name="username" label="Username" placeholder="Digite seu nome" />
         </div>
         <div>

@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`border rounded-sm p-2.5 focus:outline-none  focus:ring-primary dark:bg-darkColor ${
+        className={`border rounded-sm p-2.5 focus:outline-none bg-gray-50   focus:ring-1 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-darkColor ${
           error ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
         }`}
       />
