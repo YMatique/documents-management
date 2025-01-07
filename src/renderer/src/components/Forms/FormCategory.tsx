@@ -1,9 +1,12 @@
 import Input from './Input'
 import React, { useState } from 'react'
 import Textarea from './Textarea'
+import Select from './Select'
+
 function FormCategory(): JSX.Element {
   const [email, setEmail] = useState('')
   const [description, setDescription] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
   return (
     <form action="">
       <div className="w-full flex flex-col">
@@ -29,6 +32,21 @@ function FormCategory(): JSX.Element {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             error={!description ? 'A descrição é obrigatória' : undefined}
+          />
+        </div>
+        <div>
+          <Select
+            name="category"
+            label="Categoria"
+            placeholder="Selecione uma categoria..."
+            options={[
+              { value: 'tech', label: 'Tecnologia' },
+              { value: 'health', label: 'Saúde' },
+              { value: 'education', label: 'Educação' }
+            ]}
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            error={!selectedCategory ? 'A categoria é obrigatória' : undefined}
           />
         </div>
         <div>
