@@ -2,11 +2,13 @@ import Input from './Input'
 import React, { useState } from 'react'
 import Textarea from './Textarea'
 import Select from './Select'
+import RadioGroup from './RadioOption'
 
 function FormCategory(): JSX.Element {
   const [email, setEmail] = useState('')
   const [description, setDescription] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [selected, setSelected] = useState<string>('tech')
   return (
     <form action="">
       <div className="w-full flex flex-col">
@@ -47,6 +49,18 @@ function FormCategory(): JSX.Element {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             error={!selectedCategory ? 'A categoria é obrigatória' : undefined}
+          />
+        </div>
+        <div>
+          <RadioGroup
+            name="categories"
+            options={[
+              { label: 'Tecnologia', value: 'tech' },
+              { label: 'Saúde', value: 'health' },
+              { label: 'Educação', value: 'education' }
+            ]}
+            selectedValue={selected}
+            onChange={(value) => setSelected(value)}
           />
         </div>
         <div>
