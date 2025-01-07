@@ -1,11 +1,35 @@
 import Input from './Input'
-
+import React, { useState } from 'react'
+import Textarea from './Textarea'
 function FormCategory(): JSX.Element {
+  const [email, setEmail] = useState('')
+  const [description, setDescription] = useState('')
   return (
     <form action="">
       <div className="w-full flex flex-col">
         <div>
           <Input name="username" label="Username" placeholder="Digite seu nome" />
+        </div>
+        <div>
+          <Input
+            name="email"
+            label="Email"
+            type="email"
+            placeholder="Digite seu email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={!email ? 'O email é obrigatório' : undefined}
+          />
+        </div>
+        <div>
+          <Textarea
+            name="description"
+            label="Descrição"
+            placeholder="Digite a descrição aqui..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            error={!description ? 'A descrição é obrigatória' : undefined}
+          />
         </div>
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
