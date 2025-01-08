@@ -3,12 +3,22 @@ import React, { useState } from 'react'
 import Textarea from './Textarea'
 import Select from './Select'
 import RadioGroup from './RadioOption'
+import FileUpload from './FileUpload'
 
 function FormCategory(): JSX.Element {
   const [email, setEmail] = useState('')
   const [description, setDescription] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selected, setSelected] = useState<string>('tech')
+
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const handleFileSelect = (files: FileList | null) => {
+    if (files) {
+      setUploadedFiles(Array.from(files))
+    }
+  }
   return (
     <form action="">
       <div className="w-full flex flex-col">
@@ -62,6 +72,19 @@ function FormCategory(): JSX.Element {
             selectedValue={selected}
             onChange={(value) => setSelected(value)}
           />
+        </div>
+        <div>
+          <FileUpload id="file-upload" onFileSelect={handleFileSelect} />
+          <div className="mt-4">
+            <h2 className="font-semibold text-lg">Arquivos Selecionados:</h2>
+            <ul className="list-disc ml-6">
+              {uploadedFiles.map((file, index) => (
+                <li key={index}>
+                  {file.name} - {Math.round(file.size / 1024)} KB
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

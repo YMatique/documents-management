@@ -24,6 +24,19 @@ function createWindow(): void {
     }
   })
 
+  ipcMain.on('minimizeApp', () => {
+    mainWindow.minimize()
+  })
+  ipcMain.on('maximizeApp', () => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.restore()
+    } else {
+      mainWindow.maximize()
+    }
+  })
+  ipcMain.on('closeApp', () => {
+    mainWindow.close()
+  })
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
