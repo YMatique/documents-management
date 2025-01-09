@@ -12,12 +12,8 @@ const ModalDelete: React.FC<ModalProps> = ({ isOpen, onClose, children, title, o
   if (!isOpen) return null
 
   return (
-    <div
-      id="hs-danger-alert"
-      className="hs-overlay  size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto"
-      role="dialog"
-    >
-      <div className="mt-7 opacity-100 duration-500 ease-out transition-all md:max-w-lg md:w-full m-3 md:mx-auto">
+    <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="flex items-center justify-center opacity-100 duration-500 ease-out transition-all md:max-w-lg md:w-full m-3 md:mx-auto">
         <div className="relative flex flex-col bg-white border shadow-sm  overflow-hidden dark:bg-neutral-900 dark:border-neutral-800">
           <div className="absolute top-2 end-2">
             <button
@@ -61,7 +57,7 @@ const ModalDelete: React.FC<ModalProps> = ({ isOpen, onClose, children, title, o
               <div className="grow">
                 <h3
                   id="hs-danger-alert-label"
-                  className="mb-2 text-xl font-bold text-gray-800 dark:text-neutral-200"
+                  className="mb-2 text-base font-bold text-gray-800 dark:text-neutral-200"
                 >
                   {title}
                 </h3>

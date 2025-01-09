@@ -1,5 +1,5 @@
 import ButtonDelete from '../Buttons/ButtonDelete'
-import ButtonDetails from '../Buttons/ButtonDetails'
+// import ButtonDetails from '../Buttons/ButtonDetails'
 import ButtonEdit from '../Buttons/ButtonEdit'
 
 interface Category {
@@ -9,8 +9,8 @@ interface Category {
 }
 interface CategoryTambleProps {
   data: Category[]
-  onEdit: (id: number) => void
-  onDelete: (id: number) => void
+  onEdit: (category: Category) => void
+  onDelete: (category: Category) => void
 }
 // eslint-disable-next-line react/prop-types
 const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) => {
@@ -45,37 +45,11 @@ const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                       {/* <ButtonDetails className="" onClick={() => {}} /> */}
-                      <ButtonEdit
-                        className=""
-                        onClick={() => {
-                          onEdit(category.id)
-                        }}
-                      ></ButtonEdit>
-                      <ButtonDelete
-                        className=""
-                        onClick={() => {
-                          onDelete(category.id)
-                        }}
-                      />
+                      <ButtonEdit className="" onClick={() => onEdit(category)}></ButtonEdit>
+                      <ButtonDelete className="" onClick={() => onDelete(category)} />
                     </td>
                   </tr>
                 ))}
-                {/* <tr className="hover:bg-slate-100 dark:hover:bg-[#1f232c]">
-                  <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                    John Brown
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                    45
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                    New York No. 1 Lake Park
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                    <ButtonDetails className="" onClick={() => {}} />
-                    <ButtonEdit className="" onClick={() => {}}></ButtonEdit>
-                    <ButtonDelete className="" onClick={() => {}} />
-                  </td>
-                </tr> */}
               </tbody>
             </table>
           </div>

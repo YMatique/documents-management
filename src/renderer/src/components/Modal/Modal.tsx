@@ -5,9 +5,10 @@ interface ModalProps {
   onClose: () => void // Função para fechar o modal
   children: React.ReactNode // Conteúdo do modal
   footer?: React.ReactNode
+  title: string
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, footer }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, title, onClose, children, footer }) => {
   if (!isOpen) return null
 
   return (
@@ -15,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, footer }) => {
       <div className="bg-white dark:bg-[#1b1b1f]  shadow-lg max-w-lg w-full ">
         <div className=" mb-4 border-b border-b-gray-200 dark:border-b-gray-600 ">
           <div className="p-4 flex justify-between items-center">
-            <h2 className="text-base font-bold">Título do Modal</h2>
+            <h2 className="text-base font-bold">{title}</h2>
             <button className="text-gray-400 hover:text-gray-600" onClick={onClose}>
               ✖
             </button>
