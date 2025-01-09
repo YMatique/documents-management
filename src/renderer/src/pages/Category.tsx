@@ -7,6 +7,7 @@ import Modal from '@renderer/components/Modal/Modal'
 // import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
 import FormCategory from '@renderer/components/Forms/FormCategory'
+import CategoryTable from '@renderer/components/Tables/CategoryTable'
 const Category: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -14,6 +15,24 @@ const Category: React.FC = () => {
   const openModal = () => setIsModalOpen(true)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
+
+  const [categories, setCategories] = useState([
+    {
+      id: 1,
+      name: 'Família',
+      description: 'aads asd asd '
+    },
+    {
+      id: 2,
+      name: 'Civil',
+      description: 'aads asd asd '
+    },
+    {
+      id: 3,
+      name: 'Roubo',
+      description: 'aads asd asd '
+    }
+  ])
   return (
     <div className="flex flex-col  text-sm">
       <HeaderPage className="mb-8">
@@ -28,7 +47,7 @@ const Category: React.FC = () => {
         </div>
       </HeaderPage>
       <div className="flex flex-col">
-        <div className="-m-1.5 overflow-x-auto">
+        {/* <div className="-m-1.5 overflow-x-auto">
           <div className="p-1.5 min-w-full inline-block align-middle">
             <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
               <div className="overflow-hidden">
@@ -131,7 +150,16 @@ const Category: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <CategoryTable
+          data={categories}
+          onEdit={(id) => {
+            alert(`edite ${id}`)
+          }}
+          onDelete={(id) => {
+            alert(`delete ${id}`)
+          }}
+        />
       </div>
       <Modal
         isOpen={isModalOpen}

@@ -36,6 +36,7 @@ function createWindow(): void {
   })
   ipcMain.on('closeApp', () => {
     mainWindow.close()
+    // app.quit()
   })
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
