@@ -7,6 +7,7 @@ import Modal from '@renderer/components/Modal/Modal'
 import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
 import UserTable from '@renderer/components/Tables/UsersTable'
 import FormUser from '@renderer/components/Forms/UserForm'
+import ModalDelete from '@renderer/components/Modal/ModalDelete'
 
 interface User {
   id: number
@@ -16,6 +17,9 @@ interface User {
 }
 const Users: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const closeDeleteModal = () => setIsModalDeleteOpen(false)
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const openModal = () => setIsModalOpen(true)
@@ -49,7 +53,14 @@ const Users: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleDeleteUser = (id: number) => {
-    setUsers(users.filter((user) => user.id !== id))
+    setIsModalDeleteOpen(true)
+    // setUsers(users.filter((user) => user.id !== id))
+    // closeDeleteModal
+  }
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const deleteUser = () => {
+    // setUsers(users.filter((user) => user.id !== id))
+    setIsModalDeleteOpen(false)
   }
   return (
     <div className="flex flex-col  text-sm">
@@ -91,6 +102,18 @@ const Users: React.FC = () => {
       >
         <FormUser initialData={editingUser} />
       </Modal>
+
+      <ModalDelete
+        onClose={closeDeleteModal}
+        onDelete={deleteUser}
+        isOpen={isModalDeleteOpen}
+        title="Eliminar o usuário"
+      >
+        <p className="text-gray-500 dark:text-neutral-500">
+          Tem a certeza que pretende eliminar este usuário da aplicação? <br /> Note que esta ação é
+          irreversível!
+        </p>
+      </ModalDelete>
     </div>
   )
 }

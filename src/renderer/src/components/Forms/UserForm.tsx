@@ -1,6 +1,5 @@
 import Input from './Input'
 import React, { useEffect, useState } from 'react'
-import Textarea from './Textarea'
 import Select from './Select'
 
 interface User {
