@@ -17,6 +17,7 @@ import { FaUserTie } from 'react-icons/fa6'
 import { FaUsers } from 'react-icons/fa6'
 import { FaGears } from 'react-icons/fa6'
 import Cases from './pages/Cases'
+import Users from './pages/Users'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -125,7 +126,7 @@ function App(): JSX.Element {
               </li>
               <li className="flex ">
                 <NavLink
-                  to="/"
+                  to="/users"
                   className={({ isActive }) =>
                     isActive
                       ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
@@ -170,6 +171,12 @@ function App(): JSX.Element {
             <Route path="/" element={<Dashboard />} />
             <Route path="/category" element={<Category />} />
             <Route path="/cases" element={<Cases />} />
+            <Route path="/users" element={<Users />} />
+            {/* <Route path="/settings" element={<Settings />} /> */}
+            {/* <Route path="/notifications" element={<Notifications />} /> */}
+            {/* <Route path="/help" element={<Help />} /> */}
+            {/* <Route path="/about" element={<About />} /> */}
+            {/* <Route path="/docs" element={<Docs />} /> */}
           </Routes>
         </MainContent>
       </Router>
