@@ -166,7 +166,7 @@ function App(): JSX.Element {
             </ul>
           </nav>
         </SideBar>
-        <MainContent className="pl-4">
+        <MainContent className="pl-4 ">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/category" element={<Category />} />

@@ -11,10 +11,10 @@ interface User {
 interface CategoryTambleProps {
   data: User[]
   onEdit: (user: User) => void
-  onDelete: (user: User) => void
+  onDelete: (id: number) => void
 }
 // eslint-disable-next-line react/prop-types
-const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) => {
+const UserTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) => {
   return (
     <div className="-m-1.5 overflow-x-auto">
       <div className="p-1.5 min-w-full inline-block align-middle">
@@ -53,7 +53,7 @@ const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }
                     <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                       {/* <ButtonDetails className="" onClick={() => {}} /> */}
                       <ButtonEdit className="" onClick={() => onEdit(user)} />
-                      <ButtonDelete className="" onClick={() => onDelete(user)} />
+                      <ButtonDelete className="" onClick={() => onDelete(user.id)} />
                     </td>
                   </tr>
                 ))}
@@ -66,4 +66,4 @@ const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }
   )
 }
 
-export default CategoryTable
+export default UserTable

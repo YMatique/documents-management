@@ -5,7 +5,15 @@ import ButtonDelete from '@renderer/components/Buttons/ButtonDelete'
 import ButtonEdit from '@renderer/components/Buttons/ButtonEdit'
 import Modal from '@renderer/components/Modal/Modal'
 import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
+import UserTable from '@renderer/components/Tables/UsersTable'
+import FormUser from '@renderer/components/Forms/UserForm'
 
+interface User {
+  id: number
+  name: string
+  email: string
+  role: string
+}
 const Users: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -13,7 +21,36 @@ const Users: React.FC = () => {
   const openModal = () => setIsModalOpen(true)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
+  const [users, setUsers] = useState([
+    { id: 1, name: 'João Silva', email: 'joao@example.com', role: 'advogado' },
+    { id: 2, name: 'Maria Oliveira', email: 'maria@example.com', role: 'assistente' },
+    { id: 3, name: 'Carlos Almeida', email: 'carlos@example.com', role: 'admin' },
+    { id: 4, name: 'Ana Costa', email: 'ana@example.com', role: 'advogado' },
+    { id: 5, name: 'Paula Nunes', email: 'paula@example.com', role: 'assistente' },
+    { id: 6, name: 'Rafael Souza', email: 'rafael@example.com', role: 'advogado' },
+    { id: 7, name: 'Clara Mendes', email: 'clara@example.com', role: 'assistente' },
+    { id: 8, name: 'Fernando Santos', email: 'fernando@example.com', role: 'admin' },
+    { id: 9, name: 'Beatriz Silva', email: 'beatriz@example.com', role: 'advogado' },
+    { id: 10, name: 'Lucas Ferreira', email: 'lucas@example.com', role: 'assistente' }
+  ])
+  const [editingUser, setEditingUser] = useState<User | null>(null)
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const handleAddUser = () => {
+    setEditingUser(null)
+    setIsModalOpen(true)
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const handleEditUser = (user: User) => {
+    setEditingUser(user)
+    setIsModalOpen(true)
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const handleDeleteUser = (id: number) => {
+    setUsers(users.filter((user) => user.id !== id))
+  }
   return (
     <div className="flex flex-col  text-sm">
       <HeaderPage className="mb-8">
@@ -23,120 +60,15 @@ const Users: React.FC = () => {
             <p className="font-light text-sm">Usuários do sistema</p>
           </div>
           <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
-            <ButtonPrimary label="Cadastrar" className="" onClick={openModal} />
+            <ButtonPrimary label="Cadastrar" className="" onClick={handleAddUser} />
           </div>
         </div>
       </HeaderPage>
       <div className="flex flex-col">
-        <div className="-m-1.5 overflow-x-auto">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-              <div className="overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-                  <thead className=" uppercase ">
-                    <tr>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Título
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Estado
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Actividades
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Docs
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start w-8 text-xs font-medium ">
-                        Operação
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="border-b border-b-gray-50">
-                    <tr className="hover:bg-slate-100 dark:hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        John Brown
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        45
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        New York No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Jim Green
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        27
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        London No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Joe Black
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        31
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        Sidney No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Edward King
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        16
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        LA No. 1 Lake Park
-                      </td>
-                      <td className="px-1 py-4 space-x-1 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDetails className="" onClick={() => {}} />
-                        <ButtonEdit className="" onClick={() => {}}></ButtonEdit>
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Jim Red
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        45
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        Melbourne No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        <UserTable data={users} onEdit={handleEditUser} onDelete={handleDeleteUser} />
       </div>
       <Modal
+        title="Adicionar Usuário"
         isOpen={isModalOpen}
         onClose={closeModal}
         footer={
@@ -157,7 +89,7 @@ const Users: React.FC = () => {
           </div>
         }
       >
-        <p>Este é o conteúdo do modal.</p>
+        <FormUser initialData={editingUser} />
       </Modal>
     </div>
   )
