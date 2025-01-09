@@ -1,6 +1,7 @@
 import Input from './Input'
 import React, { useEffect, useState } from 'react'
 import Textarea from './Textarea'
+import Select from './Select'
 
 interface User {
   id: number
@@ -45,6 +46,21 @@ const FormUser: React.FC<UserProps> = ({ initialData }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             error={!email ? 'A Email é obrigatória' : undefined}
+          />
+        </div>
+        <div>
+          <Select
+            name="role"
+            label="Função"
+            placeholder="Selecione uma função..."
+            options={[
+              { value: 'lawyer', label: 'Advogado' },
+              { value: 'assistente', label: 'Assistente' },
+              { value: 'admin', label: 'Admin' }
+            ]}
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            error={!role ? 'A função é obrigatória' : undefined}
           />
         </div>
       </div>
