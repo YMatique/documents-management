@@ -5,7 +5,10 @@ interface ButtonProps {
 }
 function ButtonDetails({ onClick, className }: ButtonProps): JSX.Element {
   return (
-    <button className={`p-2 text-base  text-secondary ${className}`} onClick={onClick}>
+    <button
+      className={`p-2 text-base  text-blue-500 dark:text-blue-300 ${className}`}
+      onClick={onClick}
+    >
       <FaRegRectangleList />
     </button>
   )
