@@ -1,9 +1,12 @@
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import HeaderPage from '@renderer/components/HeaderPage'
+import Modal from '@renderer/components/Modal/Modal'
 import { useState } from 'react'
 
-const Clients: React.FC = () => {
+const Customers: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const closeModal = () => setIsModalOpen(false)
   return (
     <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">
@@ -45,11 +48,9 @@ const Clients: React.FC = () => {
             </button>
           </div>
         }
-      >
-        <p>Este é o conteúdo do modal.</p>
-      </Modal>
+      ></Modal>
     </div>
   )
 }
 
-export default Clients
+export default Customers

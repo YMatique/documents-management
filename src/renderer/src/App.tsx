@@ -19,6 +19,7 @@ import { FaGears } from 'react-icons/fa6'
 import Cases from './pages/Cases'
 import Users from './pages/Users'
 import CaseCreate from './pages/CaseCreate'
+import Customers from './pages/Clients'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -140,7 +141,7 @@ function App(): JSX.Element {
               </li>
               <li className=" flex ">
                 <NavLink
-                  to="/"
+                  to="/customers"
                   className={({ isActive }) =>
                     isActive
                       ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
@@ -174,6 +175,7 @@ function App(): JSX.Element {
             <Route path="/cases" element={<Cases />} />
             <Route path="/cases/create" element={<CaseCreate />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/customers" element={<Customers />} />
             {/* <Route path="/settings" element={<Settings />} /> */}
             {/* <Route path="/notifications" element={<Notifications />} /> */}
             {/* <Route path="/help" element={<Help />} /> */}
