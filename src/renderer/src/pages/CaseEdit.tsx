@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import ButtonBack from '@renderer/components/Buttons/ButtonBack'
 import Input from '@renderer/components/Forms/Input'
+import RadioGroup from '@renderer/components/Forms/RadioOption'
 import Select from '@renderer/components/Forms/Select'
 import Textarea from '@renderer/components/Forms/Textarea'
 import HeaderPage from '@renderer/components/HeaderPage'
@@ -20,6 +21,7 @@ const CaseEdit: React.FC = () => {
     { value: 'Lei Civil', label: 'Lei Civil' },
     { value: 'construção', label: 'Lei de Construção' }
   ]
+  const [selected, setSelected] = useState<string>('pending')
   const [customers, setCustomers] = useState([
     { value: 'António Vasco', label: 'António Vasco' },
     { value: 'Inalda Cumbane', label: 'Inalda Cumbane' },
@@ -89,6 +91,18 @@ const CaseEdit: React.FC = () => {
             </div>
             <div className="md:w-1/3 md:pl-8 ">
               <div className="bg-white dark:bg-darkColor p-4">
+                <div>
+                  <RadioGroup
+                    name="status"
+                    options={[
+                      { label: 'Pendente', value: 'pending' },
+                      { label: 'Em Andamento', value: 'onway' },
+                      { label: 'Arquivado', value: 'archived' }
+                    ]}
+                    selectedValue={selected}
+                    onChange={(value) => setSelected(value)}
+                  />
+                </div>
                 <div className="mb-4">
                   <h4 className="font-semibold  flex justify-between align-middle items-center border-b-gray-400 dark:border-b-gray-700 border border-x-0 border-t-0">
                     <span>Cliente</span>
