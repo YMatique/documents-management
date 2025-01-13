@@ -6,6 +6,15 @@ import ButtonEdit from '@renderer/components/Buttons/ButtonEdit'
 import Modal from '@renderer/components/Modal/Modal'
 import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
 import Dropdown from '@renderer/components/Dropdown'
+import CaseTable from '@renderer/components/Tables/CaseTable'
+
+interface Cases {
+  id: number
+  title: string
+  tasks: number
+  status: string
+  docs: number
+}
 const Cases: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -35,8 +44,53 @@ const Cases: React.FC = () => {
       href: '/team-account' // Redireciona para essa página
     }
   ]
+
+  const [cases, setCases] = useState([
+    {
+      id: 1,
+      title: 'Jurisdição mal feita',
+      tasks: 10,
+      docs: 10,
+      status: 'Pendende'
+    },
+    {
+      id: 2,
+      title: 'Família não dada mantimento',
+      tasks: 4,
+      docs: 6,
+      status: 'Arquivado'
+    },
+    {
+      id: 3,
+      title: 'Bla bla abla',
+      tasks: 5,
+      docs: 2,
+      status: 'Pendende'
+    },
+    {
+      id: 4,
+      title: 'Jurisdição mal feita',
+      tasks: 10,
+      docs: 10,
+      status: 'Pendende'
+    },
+    {
+      id: 5,
+      title: 'Nada bom',
+      tasks: 10,
+      docs: 10,
+      status: 'Pendende'
+    },
+    {
+      id: 6,
+      title: 'Caso mal parado',
+      tasks: 5,
+      docs: 8,
+      status: 'Em andamento'
+    }
+  ])
   return (
-    <div className="flex flex-col  text-sm">
+    <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">
         <div className="flex">
           <div className="flex w-1/2 flex-col">
@@ -48,8 +102,8 @@ const Cases: React.FC = () => {
           </div>
         </div>
       </HeaderPage>
-      <div className="flex flex-col">
-        <div className="flex mb-4">
+      <div className="flex flex-col h-full">
+        {/* <div className="flex mb-4">
           <Dropdown label="Categorias" items={dropdownItems} />
         </div>
         <div className="-m-1.5 overflow-x-auto">
@@ -158,9 +212,12 @@ const Cases: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+
+        <CaseTable data={cases} onDelete={() => {}} onEdit={() => {}} onView={() => {}} />
       </div>
       <Modal
+        title="hjhj"
         isOpen={isModalOpen}
         onClose={closeModal}
         footer={
