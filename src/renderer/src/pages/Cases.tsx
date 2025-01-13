@@ -7,6 +7,7 @@ import Modal from '@renderer/components/Modal/Modal'
 import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
 import Dropdown from '@renderer/components/Dropdown'
 import CaseTable from '@renderer/components/Tables/CaseTable'
+import ModalDelete from '@renderer/components/Modal/ModalDelete'
 
 interface Cases {
   id: number
@@ -22,28 +23,28 @@ const Cases: React.FC = () => {
   const openModal = () => setIsModalOpen(true)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
-  const dropdownItems = [
-    {
-      label: 'Newsletter',
-      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      onClick: () => {
-        alert('Clicou em Newsletter!')
-      }
-    },
-    {
-      label: 'Purchases',
-      href: '/purchases' // Redireciona para essa página
-    },
-    {
-      label: 'Downloads',
-      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      onClick: () => console.log('Iniciando download...')
-    },
-    {
-      label: 'Team Account',
-      href: '/team-account' // Redireciona para essa página
-    }
-  ]
+  // const dropdownItems = [
+  //   {
+  //     label: 'Newsletter',
+  //     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  //     onClick: () => {
+  //       alert('Clicou em Newsletter!')
+  //     }
+  //   },
+  //   {
+  //     label: 'Purchases',
+  //     href: '/purchases' // Redireciona para essa página
+  //   },
+  //   {
+  //     label: 'Downloads',
+  //     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  //     onClick: () => console.log('Iniciando download...')
+  //   },
+  //   {
+  //     label: 'Team Account',
+  //     href: '/team-account' // Redireciona para essa página
+  //   }
+  // ]
 
   const [cases, setCases] = useState([
     {
@@ -89,6 +90,14 @@ const Cases: React.FC = () => {
       status: 'Em andamento'
     }
   ])
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const closeDeleteModal = () => setIsModalDeleteOpen(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/explicit-function-return-type
+  const handleDeleteCase = (id: number) => {
+    setIsModalDeleteOpen(true)
+    alert('jk')
+  }
   return (
     <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">
@@ -103,120 +112,9 @@ const Cases: React.FC = () => {
         </div>
       </HeaderPage>
       <div className="flex flex-col h-full">
-        {/* <div className="flex mb-4">
-          <Dropdown label="Categorias" items={dropdownItems} />
-        </div>
-        <div className="-m-1.5 overflow-x-auto">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
-              <div className="overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-                  <thead className=" uppercase ">
-                    <tr>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Título
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Estado
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Actividades
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                        Docs
-                      </th>
-                      <th scope="col" className="px-1 py-3 text-start w-8 text-xs font-medium ">
-                        Operação
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="border-b border-b-gray-50">
-                    <tr className="hover:bg-slate-100 dark:hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        John Brown
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        45
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        New York No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Jim Green
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        27
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        London No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Joe Black
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        31
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        Sidney No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Edward King
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        16
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        LA No. 1 Lake Park
-                      </td>
-                      <td className="px-1 py-4 space-x-1 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDetails className="" onClick={() => {}} />
-                        <ButtonEdit className="" onClick={() => {}}></ButtonEdit>
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-
-                    <tr className="hover:bg-[#1f232c]">
-                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        Jim Red
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        45
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        Melbourne No. 1 Lake Park
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDelete className="" onClick={() => {}} />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-        <CaseTable data={cases} onDelete={() => {}} onEdit={() => {}} onView={() => {}} />
+        <CaseTable data={cases} onDelete={handleDeleteCase} onEdit={() => {}} onView={() => {}} />
       </div>
-      <Modal
+      {/* <Modal
         title="hjhj"
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -239,7 +137,19 @@ const Cases: React.FC = () => {
         }
       >
         <p>Este é o conteúdo do modal.</p>
-      </Modal>
+      </Modal> */}
+
+      <ModalDelete
+        isOpen={isModalDeleteOpen}
+        onClose={closeDeleteModal}
+        title="Eliminar a Categoria"
+        onDelete={() => {}}
+      >
+        <p className="text-gray-500 dark:text-neutral-500">
+          Tem a certeza que pretende eliminar esta categoria da aplicação? <br /> Note que esta ação
+          é irreversível!
+        </p>{' '}
+      </ModalDelete>
     </div>
   )
 }

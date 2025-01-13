@@ -12,7 +12,7 @@ interface Cases {
 
 interface CaseTableProps {
   data: Cases[]
-  onEdit: (caso: Cases) => void
+  onEdit: (id: number) => void
   onDelete: (id: number) => void
   onView: (id: number) => void
 }
@@ -62,9 +62,9 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onEdit, onDelete })
                         {caso.docs}
                       </td>
                       <td className="px-1 py-4  whitespace-nowrap text-end text-sm font-medium">
-                        <ButtonDetails className="" onClick={() => onView} />
-                        <ButtonEdit className="" onClick={() => onEdit}></ButtonEdit>
-                        <ButtonDelete className="" onClick={() => onDelete} />
+                        <ButtonDetails className="" onClick={() => onView(caso.id)} />
+                        <ButtonEdit className="" onClick={() => onEdit(caso.id)}></ButtonEdit>
+                        <ButtonDelete className="" onClick={() => onDelete(caso.id)} />
                       </td>
                     </tr>
                   ))}
