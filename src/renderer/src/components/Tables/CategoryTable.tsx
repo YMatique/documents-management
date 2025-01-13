@@ -40,10 +40,10 @@ const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }
                     <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
                       {category.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                    <td className="px-1 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                       {category.description}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                    <td className="px-1 py-4 whitespace-nowrap text-end text-sm font-medium">
                       {/* <ButtonDetails className="" onClick={() => {}} /> */}
                       <ButtonEdit className="" onClick={() => onEdit(category)}></ButtonEdit>
                       <ButtonDelete className="" onClick={() => onDelete(category)} />

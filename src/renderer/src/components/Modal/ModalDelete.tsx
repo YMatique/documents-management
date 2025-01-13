@@ -13,7 +13,7 @@ const ModalDelete: React.FC<ModalProps> = ({ isOpen, onClose, children, title, o
 
   return (
     <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="flex items-center justify-center opacity-100 duration-500 ease-out transition-all md:max-w-lg md:w-full m-3 md:mx-auto">
+      <div className="flex items-center justify-center opacity-100 duration-500 ease-out transition-all md:max-w-sm md:w-full m-3 md:mx-auto">
         <div className="relative flex flex-col bg-white border shadow-sm  overflow-hidden dark:bg-neutral-900 dark:border-neutral-800">
           <div className="absolute top-2 end-2">
             <button

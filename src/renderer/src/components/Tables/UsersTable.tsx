@@ -16,11 +16,11 @@ interface CategoryTambleProps {
 // eslint-disable-next-line react/prop-types
 const UserTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) => {
   return (
-    <div className="-m-1.5 overflow-x-auto">
+    <div className="-m-1.5 overflow-x-auto overflow-y-auto h-[calc(100%-150px)]">
       <div className="p-1.5 min-w-full inline-block align-middle">
         <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
           <div className="overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <table className="min-w-full divide-y divide-gray-400 dark:divide-neutral-700">
               <thead className=" uppercase">
                 <tr>
                   <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
@@ -44,13 +44,13 @@ const UserTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) =>
                     <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
                       {user.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                    <td className="px-1 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                       {user.email}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                    <td className="px-1 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                       {user.role}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                    <td className="px-1 py-4 whitespace-nowrap text-end text-sm font-medium">
                       {/* <ButtonDetails className="" onClick={() => {}} /> */}
                       <ButtonEdit className="" onClick={() => onEdit(user)} />
                       <ButtonDelete className="" onClick={() => onDelete(user.id)} />
