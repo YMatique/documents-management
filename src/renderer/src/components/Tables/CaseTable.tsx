@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import ButtonDelete from '../Buttons/ButtonDelete'
 import ButtonDetails from '../Buttons/ButtonDetails'
 import ButtonEdit from '../Buttons/ButtonEdit'
@@ -12,12 +13,12 @@ interface Cases {
 
 interface CaseTableProps {
   data: Cases[]
-  onEdit: (id: number) => void
+  // onEdit: (id: number) => void
   onDelete: (id: number) => void
   onView: (id: number) => void
 }
 // eslint-disable-next-line react/prop-types
-const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onEdit, onDelete }) => {
+const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex mb-4">{/* <Dropdown label="Categorias" items={dropdownItems} /> */}</div>
@@ -63,7 +64,10 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onEdit, onDelete })
                       </td>
                       <td className="px-1 py-4  whitespace-nowrap text-end text-sm font-medium">
                         <ButtonDetails className="" onClick={() => onView(caso.id)} />
-                        <ButtonEdit className="" onClick={() => onEdit(caso.id)}></ButtonEdit>
+                        {/* <ButtonEdit className="" onClick={() => onEdit(caso.id)}></ButtonEdit> */}
+                        <Link to={`/cases/edit/${caso.id}`}>
+                          <ButtonEdit className="" onClick={() => {}}></ButtonEdit>
+                        </Link>
                         <ButtonDelete className="" onClick={() => onDelete(caso.id)} />
                       </td>
                     </tr>

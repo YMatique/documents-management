@@ -20,6 +20,7 @@ import Cases from './pages/Cases'
 import Users from './pages/Users'
 import CaseCreate from './pages/CaseCreate'
 import Customers from './pages/Customers'
+import CaseEdit from './pages/CaseEdit'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -174,6 +175,7 @@ function App(): JSX.Element {
             <Route path="/category" element={<Category />} />
             <Route path="/cases" element={<Cases />} />
             <Route path="/cases/create" element={<CaseCreate />} />
+            <Route path="/cases/edit/:id" element={<CaseEdit />} />
             <Route path="/users" element={<Users />} />
             <Route path="/customers" element={<Customers />} />
             {/* <Route path="/settings" element={<Settings />} /> */}

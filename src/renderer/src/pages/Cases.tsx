@@ -93,7 +93,10 @@ const Cases: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/explicit-function-return-type
   const handleDeleteCase = (id: number) => {
     setIsModalDeleteOpen(true)
-    alert('jk')
+  }
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const handleEditCase = (id: number) => {
+    navi
   }
   return (
     <div className="flex flex-col  text-sm h-full">
@@ -111,7 +114,7 @@ const Cases: React.FC = () => {
         </div>
       </HeaderPage>
       <div className="flex flex-col h-full">
-        <CaseTable data={cases} onDelete={handleDeleteCase} onEdit={() => {}} onView={() => {}} />
+        <CaseTable data={cases} onDelete={handleDeleteCase} onView={() => {}} />
       </div>
       {/* <Modal
         title="hjhj"
