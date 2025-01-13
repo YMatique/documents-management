@@ -48,7 +48,9 @@ const Customers: React.FC = () => {
             </button>
           </div>
         }
-      ></Modal>
+      >
+        <p></p>
+      </Modal>
     </div>
   )
 }
