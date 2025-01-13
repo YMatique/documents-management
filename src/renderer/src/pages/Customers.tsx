@@ -12,8 +12,8 @@ const Customers: React.FC = () => {
       <HeaderPage className="mb-8">
         <div className="flex">
           <div className="flex w-1/2 flex-col">
-            <h4 className="text-lg font-normal">Casos</h4>
-            <p className="font-light text-sm">Todos os Casos</p>
+            <h4 className="text-lg font-normal">Clientes</h4>
+            <p className="font-light text-sm">Todos os Clientes</p>
           </div>
           <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
             <ButtonPrimary

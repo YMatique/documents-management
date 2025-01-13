@@ -19,7 +19,7 @@ import { FaGears } from 'react-icons/fa6'
 import Cases from './pages/Cases'
 import Users from './pages/Users'
 import CaseCreate from './pages/CaseCreate'
-import Customers from './pages/Clients'
+import Customers from './pages/Customers'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
