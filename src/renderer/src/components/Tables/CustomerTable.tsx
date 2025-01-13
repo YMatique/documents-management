@@ -17,7 +17,7 @@ interface CustomerTableProps {
 // eslint-disable-next-line react/prop-types
 const CustomerTable: React.FC<CustomerTableProps> = ({ data, onDelete, onEdit }) => {
   return (
-    <div className="-m-1.5 overflow-x-auto overflow-y-auto h-[calc(100%-150px)]">
+    <div className="overflow-x-auto overflow-y-auto h-[calc(100%-150px)]">
       <div className="p-1.5 min-w-full inline-block align-middle">
         <div className=" divide-y divide-gray-200 dark:border-neutral-700 dark:divide-neutral-700">
           <div className="overflow-hidden">
@@ -58,7 +58,6 @@ const CustomerTable: React.FC<CustomerTableProps> = ({ data, onDelete, onEdit })
                       {customer.address}
                     </td>
                     <td className="px-1 py-4 whitespace-nowrap text-end text-sm font-medium">
-                      {/* <ButtonDetails className="" onClick={() => {}} /> */}
                       <ButtonEdit className="" onClick={() => onEdit(customer)} />
                       <ButtonDelete className="" onClick={() => onDelete(customer.id)} />
                     </td>
