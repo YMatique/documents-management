@@ -8,6 +8,7 @@ interface TextareaProps {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void // Função ao alterar o valor
   error?: string // Mensagem de erro
   className?: string // Classes adicionais para customização
+  rows?: number //
 }
 
 const Textarea: React.FC<TextareaProps> = ({
@@ -17,7 +18,8 @@ const Textarea: React.FC<TextareaProps> = ({
   value,
   onChange,
   error,
-  className
+  className,
+  rows = 4
 }) => {
   return (
     <div className={`flex flex-col ${className}`}>
@@ -38,7 +40,7 @@ const Textarea: React.FC<TextareaProps> = ({
         className={`border rounded-sm p-2.5 focus:outline-none bg-gray-50 focus:ring-1 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-darkColor ${
           error ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
         }`}
-        rows={4} // Número padrão de linhas
+        rows={rows} // Número padrão de linhas
       />
       {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
