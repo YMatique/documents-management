@@ -1,12 +1,43 @@
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
+import CustomerTable from '@renderer/components/Tables/CustomerTable'
 import { useState } from 'react'
-
+interface Customer {
+  id: number
+  name: string
+  email: string
+  phone: string
+  address: string
+}
 const Customers: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
+
+  const [customers, setCustomers] = useState([
+    {
+      id: 1,
+      name: 'Aly Olaya',
+      email: 'aly@gmail',
+      phone: '9887713',
+      address: 'Manganhe'
+    },
+    {
+      id: 2,
+      name: 'Inalda Cumbane',
+      email: 'Inalda@gmail',
+      phone: '9887713',
+      address: 'Manganhe'
+    },
+    {
+      id: 3,
+      name: 'Armando Nhika',
+      email: 'armando@gmail',
+      phone: '9887713',
+      address: 'Manganhe'
+    }
+  ])
   return (
     <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">
@@ -26,7 +57,9 @@ const Customers: React.FC = () => {
           </div>
         </div>
       </HeaderPage>
-      <div className="flex flex-col h-full"></div>
+      <div className="flex flex-col h-full">
+        <CustomerTable data={customers} onDelete={() => {}} onEdit={() => {}} />
+      </div>
       <Modal
         title="hjhj"
         isOpen={isModalOpen}
