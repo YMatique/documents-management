@@ -11,8 +11,9 @@ interface Customer {
 }
 interface CustomerFormProps {
   initialData?: Customer | null
+  onSubmit?: () => void
 }
-const CustomerForm: React.FC<CustomerFormProps> = ({ initialData }) => {
+const CustomerForm: React.FC<CustomerFormProps> = ({ initialData, onSubmit }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -27,7 +28,11 @@ const CustomerForm: React.FC<CustomerFormProps> = ({ initialData }) => {
     }
   })
   return (
-    <form onSubmit={() => {}}>
+    <form
+      onSubmit={() => {
+        onSubmit
+      }}
+    >
       <div className="w-full flex flex-col">
         <div className="mb-4">
           <Input
