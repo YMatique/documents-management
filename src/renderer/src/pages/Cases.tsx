@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
-import ButtonDelete from '@renderer/components/Buttons/ButtonDelete'
-import ButtonEdit from '@renderer/components/Buttons/ButtonEdit'
 import Modal from '@renderer/components/Modal/Modal'
-import ButtonDetails from '@renderer/components/Buttons/ButtonDetails'
-import Dropdown from '@renderer/components/Dropdown'
 import CaseTable from '@renderer/components/Tables/CaseTable'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
+import { Link } from 'react-router-dom'
 
 interface Cases {
   id: number
@@ -107,7 +104,9 @@ const Cases: React.FC = () => {
             <p className="font-light text-sm">Todos os Casos</p>
           </div>
           <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
-            <ButtonPrimary label="Cadastrar" className="" onClick={openModal} />
+            <Link to="/cases/create">
+              <ButtonPrimary label="Cadastrar" className="" onClick={openModal} />
+            </Link>
           </div>
         </div>
       </HeaderPage>

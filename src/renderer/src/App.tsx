@@ -18,6 +18,7 @@ import { FaUsers } from 'react-icons/fa6'
 import { FaGears } from 'react-icons/fa6'
 import Cases from './pages/Cases'
 import Users from './pages/Users'
+import CaseCreate from './pages/CaseCreate'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -171,6 +172,7 @@ function App(): JSX.Element {
             <Route path="/" element={<Dashboard />} />
             <Route path="/category" element={<Category />} />
             <Route path="/cases" element={<Cases />} />
+            <Route path="/cases/create" element={<CaseCreate />} />
             <Route path="/users" element={<Users />} />
             {/* <Route path="/settings" element={<Settings />} /> */}
             {/* <Route path="/notifications" element={<Notifications />} /> */}
