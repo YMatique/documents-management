@@ -16,12 +16,8 @@ const Category: React.FC = () => {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const openModal = () => setIsModalOpen(true)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const openDeleteModal = () => setIsModalDeleteOpen(true)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
 

@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
+import CustomerForm from '@renderer/components/Forms/CustomerForm'
 import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
+import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import CustomerTable from '@renderer/components/Tables/CustomerTable'
 import { useState } from 'react'
 interface Customer {
@@ -14,6 +17,9 @@ const Customers: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const closeDeleteModal = () => setIsModalDeleteOpen(false)
 
   const [customers, setCustomers] = useState([
     {
@@ -38,6 +44,18 @@ const Customers: React.FC = () => {
       address: 'Manganhe'
     }
   ])
+  const [editCustomer, setEditCustomer] = useState<Customer | null>(null)
+  const handleDeleteCostumer = (id: number) => {
+    setIsModalDeleteOpen(true)
+  }
+  const handleEditCustomer = (customer: Customer) => {
+    setEditCustomer(customer)
+    setIsModalOpen(true)
+  }
+  const handleAddCostumer = () => {
+    setEditCustomer(null)
+    setIsModalOpen(true)
+  }
   return (
     <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">
@@ -47,21 +65,19 @@ const Customers: React.FC = () => {
             <p className="font-light text-sm">Todos os Clientes</p>
           </div>
           <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
-            <ButtonPrimary
-              label="Cadastrar"
-              className=""
-              onClick={() => {
-                setIsModalOpen(true)
-              }}
-            />
+            <ButtonPrimary label="Cadastrar" className="" onClick={handleAddCostumer} />
           </div>
         </div>
       </HeaderPage>
       <div className="flex flex-col h-full">
-        <CustomerTable data={customers} onDelete={() => {}} onEdit={() => {}} />
+        <CustomerTable
+          data={customers}
+          onDelete={handleDeleteCostumer}
+          onEdit={handleEditCustomer}
+        />
       </div>
       <Modal
-        title="hjhj"
+        title="Adicionar Usuário"
         isOpen={isModalOpen}
         onClose={closeModal}
         footer={
@@ -82,8 +98,19 @@ const Customers: React.FC = () => {
           </div>
         }
       >
-        <p></p>
+        <CustomerForm initialData={editCustomer} />
       </Modal>
+
+      <ModalDelete
+        isOpen={isModalDeleteOpen}
+        onClose={closeDeleteModal}
+        title="Eliminar a Categoria"
+        onDelete={() => {}}
+      >
+        <p className="text-gray-500 dark:text-neutral-500">
+          Tem a certeza que pretende eliminar este cliente da aplicação?
+        </p>
+      </ModalDelete>
     </div>
   )
 }
