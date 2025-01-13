@@ -21,6 +21,8 @@ import Users from './pages/Users'
 import CaseCreate from './pages/CaseCreate'
 import Customers from './pages/Customers'
 import CaseEdit from './pages/CaseEdit'
+import Documents from './pages/Documents'
+import Configurations from './pages/Configurations'
 // function App(): JSX.Element {
 //   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -116,7 +118,7 @@ function App(): JSX.Element {
               </li>
               <li className=" flex">
                 <NavLink
-                  to="/"
+                  to="/documents"
                   className={({ isActive }) =>
                     isActive
                       ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3  pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
@@ -155,7 +157,7 @@ function App(): JSX.Element {
               </li>
               <li className="flex ">
                 <NavLink
-                  to="/"
+                  to="/settings"
                   className={({ isActive }) =>
                     isActive
                       ? 'cursor-default w-full flex text-primary bg-[#1f232c] p-3 pl-4 border border-r-0 border-t-0 border-b-0 border-l-primary border-l-2'
@@ -178,11 +180,8 @@ function App(): JSX.Element {
             <Route path="/cases/edit/:id" element={<CaseEdit />} />
             <Route path="/users" element={<Users />} />
             <Route path="/customers" element={<Customers />} />
-            {/* <Route path="/settings" element={<Settings />} /> */}
-            {/* <Route path="/notifications" element={<Notifications />} /> */}
-            {/* <Route path="/help" element={<Help />} /> */}
-            {/* <Route path="/about" element={<About />} /> */}
-            {/* <Route path="/docs" element={<Docs />} /> */}
+            <Route path="/documents" element={<Documents />} />
+            <Route path="/settings" element={<Configurations />} />
           </Routes>
         </MainContent>
       </Router>
