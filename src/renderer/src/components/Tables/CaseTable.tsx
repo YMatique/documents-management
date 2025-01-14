@@ -5,6 +5,7 @@ import ButtonEdit from '../Buttons/ButtonEdit'
 
 interface Cases {
   id: number
+  code: string
   title: string
   tasks: number
   status: string
@@ -30,6 +31,9 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
                 <thead className=" uppercase ">
                   <tr>
                     <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
+                      Código
+                    </th>
+                    <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
                       Título
                     </th>
                     <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
@@ -50,6 +54,9 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
                   {/* eslint-disable-next-line react/prop-types */}
                   {data.map((caso) => (
                     <tr key={caso.id} className="hover:bg-slate-100 dark:hover:bg-[#1f232c]">
+                      <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
+                        #{caso.code}
+                      </td>
                       <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
                         {caso.title}
                       </td>

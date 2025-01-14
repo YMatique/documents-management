@@ -49,6 +49,7 @@ const Cases: React.FC = () => {
       title: 'Jurisdição mal feita',
       tasks: 10,
       docs: 10,
+      code: 13243,
       status: 'Pendende'
     },
     {
@@ -56,12 +57,14 @@ const Cases: React.FC = () => {
       title: 'Família não dada mantimento',
       tasks: 4,
       docs: 6,
+      code: 11243,
       status: 'Arquivado'
     },
     {
       id: 3,
       title: 'Bla bla abla',
       tasks: 5,
+      code: 63243,
       docs: 2,
       status: 'Pendende'
     },
@@ -69,6 +72,7 @@ const Cases: React.FC = () => {
       id: 4,
       title: 'Jurisdição mal feita',
       tasks: 10,
+      code: 20241030,
       docs: 10,
       status: 'Pendende'
     },
@@ -76,6 +80,7 @@ const Cases: React.FC = () => {
       id: 5,
       title: 'Nada bom',
       tasks: 10,
+      code: 20240430,
       docs: 10,
       status: 'Pendende'
     },
@@ -83,6 +88,7 @@ const Cases: React.FC = () => {
       id: 6,
       title: 'Caso mal parado',
       tasks: 5,
+      code: 13243,
       docs: 8,
       status: 'Em andamento'
     }
@@ -95,9 +101,7 @@ const Cases: React.FC = () => {
     setIsModalDeleteOpen(true)
   }
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const handleEditCase = (id: number) => {
-    navi
-  }
+  const handleEditCase = (id: number) => {}
   return (
     <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">

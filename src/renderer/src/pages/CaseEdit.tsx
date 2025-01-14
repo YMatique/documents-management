@@ -91,7 +91,8 @@ const CaseEdit: React.FC = () => {
             </div>
             <div className="md:w-1/3 md:pl-8 ">
               <div className="bg-white dark:bg-darkColor p-4">
-                <div>
+                <div className="mb-4">
+                  <h4 className="font-medium mb-2">Estado</h4>
                   <RadioGroup
                     name="status"
                     options={[
@@ -104,7 +105,7 @@ const CaseEdit: React.FC = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <h4 className="font-semibold  flex justify-between align-middle items-center border-b-gray-400 dark:border-b-gray-700 border border-x-0 border-t-0">
+                  <h4 className="font-medium  flex justify-between align-middle items-center border-b-gray-300 dark:border-b-gray-700 border border-x-0 border-t-0">
                     <span>Cliente</span>
                   </h4>
                 </div>
