@@ -52,83 +52,87 @@ const CaseEdit: React.FC = () => {
         </div>
       </HeaderPage>
 
-      <div>
-        <form action="" className=" ">
-          <div className="flex flex-wrap">
-            <div className="md:w-2/3 bg-white dark:bg-darkColor p-4 pt-4">
-              <div className="mb-4">
-                <Input
-                  label="Título do Caso"
-                  name="title"
-                  placeholder="Título do caso"
-                  value={title}
-                  onChange={(e) => {
-                    setTitle(e.target.value)
-                  }}
-                />
-              </div>
-              <div className="mb-4">
-                <Select
-                  name="category"
-                  label="Categoria"
-                  value={category}
-                  onChange={(e) => {
-                    setCategory(e.target.value)
-                  }}
-                  options={categories}
-                />
-              </div>
-              <div>
-                <Textarea
-                  label="Descrição do Caso"
-                  name="description"
-                  placeholder="Escreva a descrição do caso"
-                  rows={8}
-                  value={description}
-                  onChange={(e) => {
-                    setDescription(e.target.value)
-                  }}
-                />
-              </div>
-            </div>
-            <div className="md:w-1/3 md:pl-8 ">
-              <div className="bg-white dark:bg-darkColor p-4">
+      <div className="h-full">
+        <div className="overflow-y-auto h-[calc(100%-10px)]">
+          <form action="" className=" ">
+            <div className="flex flex-wrap ">
+              <div className="md:w-2/3 bg-white dark:bg-darkColor p-4 pt-4">
                 <div className="mb-4">
-                  <h4 className="font-medium mb-2">Estado</h4>
-                  <RadioGroup
-                    name="status"
-                    options={[
-                      { label: 'Pendente', value: 'pending' },
-                      { label: 'Em Andamento', value: 'onway' },
-                      { label: 'Arquivado', value: 'archived' }
-                    ]}
-                    selectedValue={selected}
-                    onChange={(value) => setSelected(value)}
+                  <Input
+                    label="Título do Caso"
+                    name="title"
+                    placeholder="Título do caso"
+                    value={title}
+                    onChange={(e) => {
+                      setTitle(e.target.value)
+                    }}
                   />
                 </div>
                 <div className="mb-4">
-                  <h4 className="font-medium  flex justify-between align-middle items-center border-b-gray-300 dark:border-b-gray-700 border border-x-0 border-t-0">
-                    <span>Cliente</span>
-                  </h4>
+                  <Select
+                    name="category"
+                    label="Categoria"
+                    value={category}
+                    onChange={(e) => {
+                      setCategory(e.target.value)
+                    }}
+                    options={categories}
+                  />
                 </div>
-
-                <div className="mb-4">
-                  <Select options={customers} label="Clientes" name="cliente" placeholder="" />
+                <div>
+                  <Textarea
+                    label="Descrição do Caso"
+                    name="description"
+                    placeholder="Escreva a descrição do caso"
+                    rows={8}
+                    value={description}
+                    onChange={(e) => {
+                      setDescription(e.target.value)
+                    }}
+                  />
                 </div>
               </div>
-            </div>
-            <div className="md:w-2/3 flex justify-end bg-white dark:bg-darkColor p-4">
-              {/* <ButtonPrimary label="Salvar" className=" " onClick={() => {}} /> */}
-            </div>
+              <div className="md:w-1/3 md:pl-8 ">
+                <div className="bg-white dark:bg-darkColor p-4">
+                  <div className="mb-4">
+                    <h4 className="font-medium mb-2">Estado</h4>
+                    <RadioGroup
+                      name="status"
+                      options={[
+                        { label: 'Pendente', value: 'pending' },
+                        { label: 'Em Andamento', value: 'onway' },
+                        { label: 'Arquivado', value: 'archived' }
+                      ]}
+                      selectedValue={selected}
+                      onChange={(value) => setSelected(value)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="font-medium  flex justify-between align-middle items-center border-b-gray-300 dark:border-b-gray-700 border border-x-0 border-t-0">
+                      <span>Cliente</span>
+                    </h4>
+                  </div>
 
-            <div className="flex w-full bg-white dark:bg-darkColor p-4 mt-4">
-              <Tabs>
-                <TabPane label="Documentos">klkl</TabPane>
-                <TabPane label="Actividades">hjhjk</TabPane>
-              </Tabs>
+                  <div className="mb-4">
+                    <Select options={customers} label="Clientes" name="cliente" placeholder="" />
+                  </div>
+                </div>
+              </div>
+              <div className="md:w-2/3 flex justify-end bg-white dark:bg-darkColor p-4">
+                {/* <ButtonPrimary label="Salvar" className=" " onClick={() => {}} /> */}
+              </div>
+
+              <div className="flex w-full bg-white dark:bg-darkColor p-4 mt-4">
+                <Tabs>
+                  <TabPane label="Documentos">
+                    <p>Documentos do caso</p>
+                  </TabPane>
+                  <TabPane label="Actividades">Actividades do caso</TabPane>
+                </Tabs>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
 
       <Modal
