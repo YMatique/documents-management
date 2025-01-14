@@ -71,7 +71,6 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
                       </td>
                       <td className="px-1 py-4  whitespace-nowrap text-end text-sm font-medium">
                         <ButtonDetails className="" onClick={() => onView(caso.id)} />
-                        {/* <ButtonEdit className="" onClick={() => onEdit(caso.id)}></ButtonEdit> */}
                         <Link to={`/cases/edit/${caso.id}`}>
                           <ButtonEdit className="" onClick={() => {}}></ButtonEdit>
                         </Link>

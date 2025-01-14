@@ -6,6 +6,8 @@ import Select from '@renderer/components/Forms/Select'
 import Textarea from '@renderer/components/Forms/Textarea'
 import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
+import { Tabs, TabPane } from '@renderer/components/Tabs'
+// import Tab from '@renderer/components/Tab'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -117,6 +119,13 @@ const CaseEdit: React.FC = () => {
             </div>
             <div className="md:w-2/3 flex justify-end bg-white dark:bg-darkColor p-4">
               {/* <ButtonPrimary label="Salvar" className=" " onClick={() => {}} /> */}
+            </div>
+
+            <div className="flex w-full bg-white dark:bg-darkColor p-4 mt-4">
+              <Tabs>
+                <TabPane label="Documentos">klkl</TabPane>
+                <TabPane label="Actividades">hjhjk</TabPane>
+              </Tabs>
             </div>
           </div>
         </form>
