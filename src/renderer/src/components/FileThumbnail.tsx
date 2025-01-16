@@ -1,8 +1,9 @@
+import imgEletrom from '../assets/electron.svg'
 const FileThumbnail: React.FC = () => {
   return (
     <div>
       <div className="relative bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-        <img className="w-full h-auto rounded-xl" src="../assets/electron.svg" alt="Card Image" />
+        <img className="w-full h-auto rounded-xl" src={imgEletrom} alt="Card Image" />
         <div className="absolute top-0 start-0 end-0">
           <div className="p-4 md:p-5">
             <h3 className="text-lg font-bold text-gray-800">Card title</h3>

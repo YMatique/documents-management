@@ -7,6 +7,7 @@ import Select from '@renderer/components/Forms/Select'
 import Textarea from '@renderer/components/Forms/Textarea'
 import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
+import PdfViewer from '@renderer/components/PdfViewer'
 import { Tabs, TabPane } from '@renderer/components/Tabs'
 // import Tab from '@renderer/components/Tab'
 import { useState } from 'react'
@@ -129,7 +130,24 @@ const CaseEdit: React.FC = () => {
                   <TabPane label="Documentos">
                     <p>Documentos do caso</p>
 
-                    <FileThumbnail />
+                    {/* <FileThumbnail /> */}
+                    <div className="flex flex-wrap justify-normal -ml-4">
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      {/* <PdfViewer file="" />
+                      <PdfViewer file="" />
+                      <PdfViewer file="" /> */}
+                      {/* <PdfViewer file="" />
+                      <PdfViewer file="" /> */}
+                    </div>
                   </TabPane>
                   <TabPane label="Actividades">Actividades do caso</TabPane>
                 </Tabs>

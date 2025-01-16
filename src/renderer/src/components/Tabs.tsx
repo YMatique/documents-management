@@ -36,6 +36,6 @@ const Tabs: React.FC<TabProps> = ({ children }) => {
 }
 
 const TabPane: React.FC<TabPanesProps> = ({ children }) => {
-  return <div>{children}</div>
+  return <div className="flex flex-col">{children}</div>
 }
 export { Tabs, TabPane }
