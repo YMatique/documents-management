@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import ButtonBack from '@renderer/components/Buttons/ButtonBack'
+import FileThumbnail from '@renderer/components/FileThumbnail'
 import Input from '@renderer/components/Forms/Input'
 import RadioGroup from '@renderer/components/Forms/RadioOption'
 import Select from '@renderer/components/Forms/Select'
@@ -32,8 +33,9 @@ const CaseEdit: React.FC = () => {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
+
   return (
-    <div className="flex flex-col  text-sm h-full">
+    <div className="flex flex-col  text-sm h-[calc(100vh-100px)]">
       <HeaderPage className="mb-8">
         <div className="flex">
           <div className="flex w-1/2 flex-col">
@@ -53,7 +55,7 @@ const CaseEdit: React.FC = () => {
       </HeaderPage>
 
       <div className="h-full">
-        <div className="overflow-y-auto h-[calc(100%-10px)]">
+        <div className="overflow-y-auto h-[calc(100%-70px)]">
           <form action="" className=" ">
             <div className="flex flex-wrap ">
               <div className="md:w-2/3 bg-white dark:bg-darkColor p-4 pt-4">
@@ -126,6 +128,8 @@ const CaseEdit: React.FC = () => {
                 <Tabs>
                   <TabPane label="Documentos">
                     <p>Documentos do caso</p>
+
+                    <FileThumbnail />
                   </TabPane>
                   <TabPane label="Actividades">Actividades do caso</TabPane>
                 </Tabs>

@@ -20,21 +20,22 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: true,
+      contextIsolation: true
     }
   })
 
-  ipcMain.on('minimizeApp', () => {
+  ipcMain.handle('minimizeApp', () => {
     mainWindow.minimize()
   })
-  ipcMain.on('maximizeApp', () => {
+  ipcMain.handle('maximizeApp', () => {
     if (mainWindow.isMaximized()) {
       mainWindow.restore()
     } else {
       mainWindow.maximize()
     }
   })
-  ipcMain.on('closeApp', () => {
+  ipcMain.handle('closeApp', () => {
     mainWindow.close()
     // app.quit()
   })
@@ -46,6 +47,7 @@ function createWindow(): void {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
+  // mainWindow.webContents.openDevTools()
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
@@ -71,10 +73,13 @@ app.whenReady().then(() => {
   })
 
   // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  // ipcMain.on('ping', () => console.log('pong'))
 
   // ipcMain.on()
 
+  ipcMain.handle('ping', (): string => {
+    return 'Hello'
+  })
   createWindow()
 
   app.on('activate', function () {

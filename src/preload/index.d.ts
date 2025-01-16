@@ -1,4 +1,4 @@
-import { ElectronAPI } from '@electron-toolkit/preload'
+// import { ElectronAPI } from '@electron-toolkit/preload'
 
 export interface BtnFunction {
   minimizeApp: () => void
@@ -7,8 +7,14 @@ export interface BtnFunction {
 }
 declare global {
   interface Window {
-    electron: ElectronAPI
-    api: unknown
-    btnFunction: BtnFunction
+    // electron: ElectronAPI
+    // api: unknown
+    // btnFunction: BtnFunction
+    context: {
+      ping: string
+      minimizeApp: () => void
+      maximizeApp: () => void
+      closeApp: () => void
+    }
   }
 }
