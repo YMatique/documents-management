@@ -14,7 +14,7 @@ const Tabs: React.FC<TabProps> = ({ children }) => {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <div className="border-b w-full border-gray-200 dark:border-neutral-700">
           <nav className="flex gap-x-1" aria-orientation="horizontal">
             {children.map((child, index) => (

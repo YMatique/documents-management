@@ -12,6 +12,7 @@ import docPdf from '../assets/Wise Corretores de Seguro - BRD.pdf'
 // import Tab from '@renderer/components/Tab'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ButtonPlus from '@renderer/components/Buttons/ButtonPlus'
 
 const CaseEdit: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -57,7 +58,7 @@ const CaseEdit: React.FC = () => {
 
       <div className="h-full">
         <div className="overflow-y-auto h-[calc(100%-70px)]">
-          <form action="" className=" ">
+          <form action="" className=" " onSubmit={() => {}}>
             <div className="flex flex-wrap ">
               <div className="md:w-2/3 bg-white dark:bg-darkColor p-4 pt-4">
                 <div className="mb-4">
@@ -128,7 +129,10 @@ const CaseEdit: React.FC = () => {
               <div className="flex w-full bg-white dark:bg-darkColor p-4 mt-4">
                 <Tabs>
                   <TabPane label="Documentos">
-                    <p>Documentos do caso</p>
+                    <div className="flex justify-between align-middle items-center">
+                      <h4 className="font-medium">Documentos</h4>
+                      <ButtonPlus onClick={() => {}} className="text-xl" />
+                    </div>
 
                     {/* <FileThumbnail /> */}
                     <div className="flex flex-wrap justify-normal -ml-4  ">
@@ -140,11 +144,6 @@ const CaseEdit: React.FC = () => {
                       <PdfViewer file={docPdf} />
                       <PdfViewer file={docPdf} />
                       <PdfViewer file={docPdf} />
-                      {/* <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" /> */}
                     </div>
                   </TabPane>
                   <TabPane label="Actividades">Actividades do caso</TabPane>
