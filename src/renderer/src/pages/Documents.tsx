@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable prettier/prettier */
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
+import DocumentList from '@renderer/components/Documents/DocumentsList'
 import HeaderPage from '@renderer/components/HeaderPage'
 
 const Documents: React.FC = () => {
@@ -20,7 +21,9 @@ const Documents: React.FC = () => {
             </div>
           </div>
         </HeaderPage>
-        <div className="flex flex-col"></div>
+        <div className="flex flex-col">
+          <DocumentList />
+        </div>
       </div>
     </>
   )
