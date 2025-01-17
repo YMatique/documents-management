@@ -140,11 +140,11 @@ const CaseEdit: React.FC = () => {
                       <PdfViewer file="" />
                       <PdfViewer file="" />
                       <PdfViewer file="" />
+                      {/* <PdfViewer file="" />
                       <PdfViewer file="" />
                       <PdfViewer file="" />
                       <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
+                      <PdfViewer file="" /> */}
                     </div>
                   </TabPane>
                   <TabPane label="Actividades">Actividades do caso</TabPane>

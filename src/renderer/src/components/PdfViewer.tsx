@@ -29,8 +29,8 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file }) => {
   }
 
   return (
-    <div className="h-44 w-40 p-4 min-w-40 ">
-      <div className="bg-white border border-gray-300 w-full h-full shadow-lg  flex justify-center">
+    <div className="h-48 w-40 p-4 min-w-40 mb-4">
+      <div className="bg-white border border-gray-300 w-full h-36 shadow-lg  flex justify-center">
         <Document
           className="h-full"
           file={docPdf}
@@ -51,9 +51,9 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file }) => {
           />
         </Document>
       </div>
-
-      {/* {numPages > 0 && <p>1 de {numPages} páginas</p>}
-      <p>{pdfjs.GlobalWorkerOptions.workerSrc}</p> */}
+      <p className=" line-clamp-2 text-ellipsis dark:text-gray-500">
+        Documento x asgha sfhads fasjfa
+      </p>
     </div>
   )
 }
