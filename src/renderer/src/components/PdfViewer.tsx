@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
-import docPdf from '../assets/Wise Corretores de Seguro - BRD.pdf'
-// import path from 'node:path'
-// import fs from 'node:fs'
 
 // Tipo para as props do componente
 interface PdfViewerProps {
@@ -15,39 +12,29 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString()
 
-// const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'))
-// const pdfWorkerPaht = path.join(pdfjsDistPath, 'build', 'pdf.worker.mjs')
-// fs.cpSync(pdfWorkerPaht, './dist/pdf.worker.mjs', { recursive: true })
 const PdfViewer: React.FC<PdfViewerProps> = ({ file }) => {
-  const [numPages, setNumPages] = useState<number>(0) // Número total de páginas
-  const [pageNumber] = useState<number>(1) // Vamos exibir sempre a primeira página
-  // console.log(pdfjs.GlobalWorkerOptions.workerSrc);
+  // const [numPages, setNumPages] = useState<number>(0)
+  const [pageNumber] = useState<number>(1)
 
   // Função para atualizar o número de páginas quando o PDF for carregado
-  const onLoadSuccess = ({ numPages }: { numPages: number }) => {
-    setNumPages(numPages)
-  }
+  // const onLoadSuccess = ({ numPages }: { numPages: number }) => {
+  //   setNumPages(numPages)
+  // }
 
   return (
-    <div className="h-48 w-40 p-4 min-w-40 mb-4">
-      <div className="bg-white border border-gray-300 w-full h-36 shadow-lg  flex justify-center">
+    <div className="h-48 w-40 p-4 min-w-40 mb-4 ">
+      <div className="bg-white border border-gray-300 w-full h-36 shadow-lg  flex justify-center relative">
         <Document
           className="h-full"
-          file={docPdf}
-          onLoadSuccess={onLoadSuccess}
+          file={file}
+          // onLoadSuccess={onLoadSuccess}
           loading="Carregando PDF..."
         >
           <Page
-            pageNumber={1}
-            // className="mx-auto"
-            // width={192}
-            // scale={0.7}
+            pageNumber={pageNumber}
             height={128}
             renderTextLayer={false}
             renderAnnotationLayer={false}
-            onClick={() => {
-              console.log('clicado')
-            }}
           />
         </Document>
       </div>

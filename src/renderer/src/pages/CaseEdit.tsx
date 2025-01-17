@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import ButtonBack from '@renderer/components/Buttons/ButtonBack'
-import FileThumbnail from '@renderer/components/FileThumbnail'
 import Input from '@renderer/components/Forms/Input'
 import RadioGroup from '@renderer/components/Forms/RadioOption'
 import Select from '@renderer/components/Forms/Select'
@@ -9,6 +8,7 @@ import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
 import PdfViewer from '@renderer/components/PdfViewer'
 import { Tabs, TabPane } from '@renderer/components/Tabs'
+import docPdf from '../assets/Wise Corretores de Seguro - BRD.pdf'
 // import Tab from '@renderer/components/Tab'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -132,14 +132,14 @@ const CaseEdit: React.FC = () => {
 
                     {/* <FileThumbnail /> */}
                     <div className="flex flex-wrap justify-normal -ml-4  ">
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
-                      <PdfViewer file="" />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
+                      <PdfViewer file={docPdf} />
                       {/* <PdfViewer file="" />
                       <PdfViewer file="" />
                       <PdfViewer file="" />
