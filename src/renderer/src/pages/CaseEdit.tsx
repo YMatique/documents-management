@@ -131,7 +131,7 @@ const CaseEdit: React.FC = () => {
                     <p>Documentos do caso</p>
 
                     {/* <FileThumbnail /> */}
-                    <div className="flex flex-wrap justify-normal -ml-4">
+                    <div className="flex flex-wrap justify-normal -ml-4  ">
                       <PdfViewer file="" />
                       <PdfViewer file="" />
                       <PdfViewer file="" />
@@ -142,11 +142,9 @@ const CaseEdit: React.FC = () => {
                       <PdfViewer file="" />
                       <PdfViewer file="" />
                       <PdfViewer file="" />
-                      {/* <PdfViewer file="" />
                       <PdfViewer file="" />
-                      <PdfViewer file="" /> */}
-                      {/* <PdfViewer file="" />
-                      <PdfViewer file="" /> */}
+                      <PdfViewer file="" />
+                      <PdfViewer file="" />
                     </div>
                   </TabPane>
                   <TabPane label="Actividades">Actividades do caso</TabPane>

@@ -29,7 +29,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file }) => {
   }
 
   return (
-    <div className="h-56 w-52 p-4 ">
+    <div className="h-44 w-40 p-4 min-w-40 ">
       <div className="bg-white border border-gray-300 w-full h-full shadow-lg  flex justify-center">
         <Document
           className="h-full"
@@ -42,7 +42,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file }) => {
             // className="mx-auto"
             // width={192}
             // scale={0.7}
-            height={190}
+            height={128}
             renderTextLayer={false}
             renderAnnotationLayer={false}
             onClick={() => {
