@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  email     String  @unique
+  password String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime @updatedAt 
+  deletedAt DateTime?
+  cases    Cases[]
+  role      Role    @default(LAWYER)
+  tokens    Token[]
+}
+enum Role {
+  ADMIN
+  LAWYER
+}
+model Token {
+  id        String  @id @default(uuid())
+  token     String
+  expiresAt DateTime
+  user     User    @relation(fields: [userId], references: [id])
+  userId    Int
+}
+model Category{
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String
+  cases Cases []
+}
+enum Status {
+  PENDING
+  RESOLVED
+  PROGRESS
+  REJECTED
+}
+model Customer{
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  email     String  @unique
+  cases    Cases[]
+  phone     String
+  address  String
+  createdAt   DateTime    @default(now())
+  updatedAt DateTime @updatedAt 
+  deletedAt DateTime?
+}
+model Cases{
+  id        Int     @id @default(autoincrement())
+  title     String  @unique
+  description   String
+  status Status
+  category  Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+   userId    Int
+  createdAt   DateTime    @default(now())
+  updatedAt DateTime @updatedAt 
+  deletedAt DateTime?
+  documents Document[]
+  user     User    @relation(fields: [userId], references: [id])
+ 
+  customer Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+}
+model Document {
+  id        String  @id @default(uuid())
+  name      String
+  path      String
+    createdAt   DateTime    @default(now())
+  updatedAt DateTime @updatedAt 
+  deletedAt DateTime?
+  caseId    Int
+  case      Cases    @relation(fields: [caseId], references: [id])
+}
