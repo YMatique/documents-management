@@ -1,9 +1,10 @@
-import { UserModel } from './../renderer/db/users'
-import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
+import { UserModel } from '../renderer/db/users'
+// import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { Role } from '@prisma/client'
 // import insertUpdateDeleteData
 
 function createWindow(): void {
@@ -43,7 +44,7 @@ function createWindow(): void {
     // app.quit()
   })
   ipcMain.handle('executeQuery', () => {
-    insertUpdateDeleteData()
+    // insertUpdateDeleteData()
   })
   ipcMain.handle('getUsers', () => new UserModel().get())
 
@@ -86,6 +87,11 @@ app.whenReady().then(() => {
   // ipcMain.on()
 
   ipcMain.handle('deleteUser', (_, args: number) => new UserModel().delete(args))
+  ipcMain.handle(
+    'createUser',
+    (_, args: { name: string; email: string; role: Role; password: string }) =>
+      UserModel.create(args)
+  )
   ipcMain.handle('ping', (): string => {
     return 'Hello'
   })

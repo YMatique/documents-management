@@ -7,6 +7,7 @@ import UserTable from '@renderer/components/Tables/UsersTable'
 import UserForm from '@renderer/components/Forms/UserForm'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import { User, Role } from '@prisma/client'
+import { UserModel } from '../../db/users'
 
 const Users: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
@@ -46,9 +47,14 @@ const Users: React.FC = () => {
     } else {
       // Criar novo usuário
       console.log(data)
-      // const newUser = await
-      // const newUser = await window.context.createUser(data)
-      // setUsers([...users, newUser])
+      // const newUser = await UserModel.create(data.name, data.email, data.role, '12345600')
+      const newUser = await window.context.createUser({
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        password: '1234567'
+      })
+      setUsers([...users, newUser])
     }
     closeModal()
   }

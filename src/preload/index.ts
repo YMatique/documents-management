@@ -31,6 +31,7 @@
 //   window.api = api
 // }
 
+import { Role } from '@prisma/client'
 import { contextBridge, ipcRenderer } from 'electron'
 if (!process.contextIsolated) {
   throw new Error('contextIsolation must be enabled in the BrowserWindow')
@@ -43,7 +44,9 @@ try {
     closeApp: () => ipcRenderer.invoke('closeApp'),
     executeQuery: () => ipcRenderer.invoke('executeQuery'),
     getUsers: () => ipcRenderer.invoke('getUsers'),
-    deleteUser: (args: number) => ipcRenderer.invoke('deleteUser', args)
+    deleteUser: (args: number) => ipcRenderer.invoke('deleteUser', args),
+    createUser: (args: { name: string; email: string; role: Role; password: string }) =>
+      ipcRenderer.invoke('createUser', args)
   })
 } catch (error) {
   console.error(error)

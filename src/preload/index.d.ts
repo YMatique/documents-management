@@ -18,6 +18,12 @@ declare global {
       executeQuery: () => void
       getUsers: () => Promise<User[]>
       deleteUser: (number) => Promise<boolean>
+      createUser: (args: {
+        name: string
+        email: string
+        role: Role
+        password: string
+      }) => Promise<User>
     }
   }
 }
