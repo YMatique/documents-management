@@ -1,120 +1,103 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import Modal from '@renderer/components/Modal/Modal'
 import UserTable from '@renderer/components/Tables/UsersTable'
-import FormUser from '@renderer/components/Forms/UserForm'
+import UserForm from '@renderer/components/Forms/UserForm'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
-import { User } from '@prisma/client'
+import { User, Role } from '@prisma/client'
 
-// interface User {
-//   id: number
-//   name: string
-//   email: string
-//   role: string
-// }
 const Users: React.FC = () => {
-  const getUserFromDB = async () => await window.context.getUsers() //.then((e) => e)
-  useEffect(() => {
-    getUserFromDB().then((e: User[]) => {
-      setUsers(e)
-    })
-  }, [])
+  const [users, setUsers] = useState<User[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
-  const closeDeleteModal = () => setIsModalDeleteOpen(false)
-
-  // const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
-  const [users, setUsers] = useState<User[]>([])
   const [editingUser, setEditingUser] = useState<User | null>(null)
-  const [deletingUser, setDeletingUser] = useState<number>(0)
+  const [deletingUser, setDeletingUser] = useState<number | null>(null)
 
-  const handleAddUser = () => {
+  // Buscar usuários do banco
+  useEffect(() => {
+    window.context.getUsers().then(setUsers)
+  }, [])
+
+  // Abrir/Cerrar modais
+  const openCreateModal = () => {
     setEditingUser(null)
     setIsModalOpen(true)
   }
-  const handleEditUser = (user: User) => {
+
+  const openEditModal = (user: User) => {
     setEditingUser(user)
     setIsModalOpen(true)
   }
 
-  const handleDeleteUser = (id: number) => {
-    // setUsers(users.filter((user) => user.id !== id))
+  const closeModal = () => setIsModalOpen(false)
+  const closeDeleteModal = () => setIsModalDeleteOpen(false)
+
+  // Criar ou editar usuário
+  const handleUserSubmit = async (data: { name: string; email: string; role: Role }) => {
+    if (editingUser) {
+      // Atualizar usuário existente
+      const updatedUser = { ...editingUser, ...data }
+      // await window.context.updateUser(updatedUser)
+      console.log(data)
+
+      setUsers(users.map((u) => (u.id === updatedUser.id ? updatedUser : u)))
+    } else {
+      // Criar novo usuário
+      console.log(data)
+      // const newUser = await
+      // const newUser = await window.context.createUser(data)
+      // setUsers([...users, newUser])
+    }
+    closeModal()
+  }
+
+  // Excluir usuário
+  const openDeleteModal = (id: number) => {
     setDeletingUser(id)
     setIsModalDeleteOpen(true)
+  }
 
-    // closeDeleteModal
-  }
   const deleteUser = async () => {
-    const isDeleted = await window.context.deleteUser(deletingUser)
-    if (isDeleted) {
-      setUsers(users.filter((user) => user.id !== deletingUser))
-      setDeletingUser(0)
-      setIsModalDeleteOpen(false)
+    if (deletingUser) {
+      const isDeleted = await window.context.deleteUser(deletingUser)
+      if (isDeleted) {
+        setUsers(users.filter((user) => user.id !== deletingUser))
+      }
     }
+    closeDeleteModal()
   }
+
   return (
-    <div className="flex flex-col  text-sm">
+    <div className="flex flex-col text-sm">
       <HeaderPage className="mb-8">
-        <div className="flex">
-          <div className="flex w-1/2 flex-col">
+        <div className="flex justify-between">
+          <div>
             <h4 className="text-lg font-normal">Usuários</h4>
             <p className="font-light text-sm">Usuários do sistema</p>
           </div>
-          <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
-            <ButtonPrimary label="Cadastrar" className="" onClick={handleAddUser} />
-          </div>
+          <ButtonPrimary className="" label="Cadastrar" onClick={openCreateModal} />
         </div>
       </HeaderPage>
-      <div className="flex flex-col">
-        <UserTable data={users} onEdit={handleEditUser} onDelete={handleDeleteUser} />
-      </div>
+
+      <UserTable data={users} onEdit={openEditModal} onDelete={openDeleteModal} />
+
       <Modal
-        title="Adicionar Usuário"
+        title={editingUser ? 'Editar Usuário' : 'Adicionar Usuário'}
         isOpen={isModalOpen}
         onClose={closeModal}
-        footer={
-          <div className="flex justify-end gap-2">
-            <button
-              onClick={closeModal}
-              className="px-2 py-2 bg-gray-500 text-white text-sm hover:bg-gray-600"
-            >
-              Cancelar
-            </button>
-            <button
-              onClick={() => {
-                const form = document.forms[0].getAttributeNames()
-                // form.onsubmit(() => {})
-                // form.onsubmit((e) => {e.preventDefault();})
-                // form.submit()
-
-                console.log(form)
-              }}
-              type="submit"
-              form="formulario-modal"
-              className="px-2 py-2 bg-blue-500 text-white hover:bg-blue-600"
-            >
-              Salvar
-            </button>
-          </div>
-        }
       >
-        <FormUser initialData={editingUser} />
+        <UserForm onCancel={closeModal} onSubmit={handleUserSubmit} initialData={editingUser} />
       </Modal>
 
       <ModalDelete
+        isOpen={isModalDeleteOpen}
         onClose={closeDeleteModal}
         onDelete={deleteUser}
-        isOpen={isModalDeleteOpen}
-        title="Eliminar o usuário"
+        title="Excluir Usuário"
       >
-        <p className="text-gray-500 dark:text-neutral-500">
-          Tem a certeza que pretende eliminar este usuário da aplicação? <br /> Note que esta ação é
-          irreversível!
-        </p>
+        <p>Tem certeza que deseja excluir este usuário?</p>
       </ModalDelete>
     </div>
   )

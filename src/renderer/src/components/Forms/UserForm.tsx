@@ -1,20 +1,20 @@
-import Input from './Input'
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useEffect, useState } from 'react'
+import Input from './Input'
 import Select from './Select'
-import { User, Role } from '@prisma/client'
+import { Role, User } from '@prisma/client'
 import { UserRole } from '../../../types/Role'
-import { UserModel } from '../../../db/users'
 
-interface UserProps {
+interface UserFormProps {
   initialData?: User | null
+  onSubmit: (data: { name: string; email: string; role: Role }) => void
+  onCancel: () => void
 }
-// async function submiteForm(name: string, email: string, role: Role): Promise<User> {
-//   return await UserModel.create(name, email, role, '1234556')
-// }
-const FormUser: React.FC<UserProps> = ({ initialData }) => {
+
+const UserForm: React.FC<UserFormProps> = ({ initialData, onSubmit, onCancel }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [role, setRole] = useState('')
+  const [role, setRole] = useState<Role | ''>('')
 
   useEffect(() => {
     if (initialData) {
@@ -22,52 +22,65 @@ const FormUser: React.FC<UserProps> = ({ initialData }) => {
       setEmail(initialData.email)
       setRole(initialData.role)
     }
-  })
-  return (
-    <form
-      id="userForm"
-      onSubmit={(e) => {
-        e.preventDefault()
-        // console.log(UserRole.filter((_role) => _role.label == role))
+  }, [initialData])
 
-        // await submiteForm(name, email, UserRole.filter((auxRole) => ));
-      }}
-    >
-      <div className="w-full flex flex-col">
-        <div className="mb-4">
-          <Input
-            name="name"
-            label="Nome"
-            type="text"
-            placeholder="Digite o nome do usuário"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            error={!name ? 'O nome do usuário é obrigatório' : undefined}
-          />
-        </div>
-        <div className="mb-4">
-          <Input
-            name="email"
-            label="Email"
-            placeholder="Digite a Email aqui..."
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            error={!email ? 'A Email é obrigatória' : undefined}
-          />
-        </div>
-        <div className="mb-4">
-          <Select
-            name="role"
-            label="Função"
-            placeholder="Selecione uma função..."
-            options={UserRole}
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            error={!role ? 'A função é obrigatória' : undefined}
-          />
-        </div>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!name || !email || !role) return // Evita envio sem dados
+    onSubmit({ name, email, role })
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="w-full flex flex-col space-y-4">
+        <Input
+          name="name"
+          label="Nome"
+          type="text"
+          placeholder="Digite o nome do usuário"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          error={!name ? 'O nome do usuário é obrigatório' : undefined}
+        />
+
+        <Input
+          name="email"
+          label="Email"
+          placeholder="Digite o email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          error={!email ? 'O email é obrigatório' : undefined}
+        />
+
+        <Select
+          name="role"
+          label="Função"
+          placeholder="Selecione uma função..."
+          options={UserRole}
+          value={role}
+          onChange={(e) => setRole(e.target.value as Role)}
+          error={!role ? 'A função é obrigatória' : undefined}
+        />
+      </div>
+
+      {/* BOTÕES NO RODAPÉ */}
+      <div className="flex justify-end gap-2 mt-6">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="px-4 py-2 text-gray-600 bg-gray-200 hover:bg-gray-300 rounded"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded"
+        >
+          Salvar
+        </button>
       </div>
     </form>
   )
 }
-export default FormUser
+
+export default UserForm
