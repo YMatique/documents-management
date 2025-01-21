@@ -19,4 +19,13 @@ export class UserModel {
     const user = await prisma.user.findMany()
     return user
   }
+  async delete(id: number): Promise<void> {
+    await prisma.user.delete({ where: { id } })
+  }
+  async update(user: User): Promise<User> {
+    return await prisma.user.update({ where: { id: user.id }, data: user })
+  }
+  async create(user: User): Promise<User> {
+    return await prisma.user.create({ data: user })
+  }
 }
