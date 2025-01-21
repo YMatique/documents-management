@@ -1,4 +1,4 @@
-import { PrismaClient, User } from '@prisma/client'
+import { PrismaClient, Role, User } from '@prisma/client'
 
 // import prisma from "./db";
 
@@ -33,7 +33,14 @@ export class UserModel {
   async update(user: User): Promise<User> {
     return await prisma.user.update({ where: { id: user.id }, data: user })
   }
-  async create(user: User): Promise<User> {
-    return await prisma.user.create({ data: user })
+  static async create(name: string, email: string, role: Role, password: string): Promise<User> {
+    return await prisma.user.create({
+      data: {
+        email: email,
+        role: role,
+        name: name,
+        password: password
+      }
+    })
   }
 }

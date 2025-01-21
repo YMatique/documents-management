@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState, useEffect } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
@@ -84,6 +85,14 @@ const Users: React.FC = () => {
               Cancelar
             </button>
             <button
+              onClick={() => {
+                const form = document.forms[0].getAttributeNames()
+                // form.onsubmit(() => {})
+                // form.onsubmit((e) => {e.preventDefault();})
+                // form.submit()
+
+                console.log(form)
+              }}
               type="submit"
               form="formulario-modal"
               className="px-2 py-2 bg-blue-500 text-white hover:bg-blue-600"

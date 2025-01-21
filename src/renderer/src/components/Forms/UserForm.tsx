@@ -1,12 +1,16 @@
 import Input from './Input'
 import React, { useEffect, useState } from 'react'
 import Select from './Select'
-import { User } from '@prisma/client'
+import { User, Role } from '@prisma/client'
 import { UserRole } from '../../../types/Role'
+import { UserModel } from '../../../db/users'
 
 interface UserProps {
   initialData?: User | null
 }
+// async function submiteForm(name: string, email: string, role: Role): Promise<User> {
+//   return await UserModel.create(name, email, role, '1234556')
+// }
 const FormUser: React.FC<UserProps> = ({ initialData }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -20,7 +24,15 @@ const FormUser: React.FC<UserProps> = ({ initialData }) => {
     }
   })
   return (
-    <form onSubmit={() => {}}>
+    <form
+      id="userForm"
+      onSubmit={(e) => {
+        e.preventDefault()
+        // console.log(UserRole.filter((_role) => _role.label == role))
+
+        // await submiteForm(name, email, UserRole.filter((auxRole) => ));
+      }}
+    >
       <div className="w-full flex flex-col">
         <div className="mb-4">
           <Input
