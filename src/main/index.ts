@@ -92,6 +92,11 @@ app.whenReady().then(() => {
     (_, args: { name: string; email: string; role: Role; password: string }) =>
       UserModel.create(args)
   )
+  ipcMain.handle(
+    'updateUser',
+    (_, args: { id: number; name: string; email: string; role: Role; password: string }) =>
+      UserModel.update(args)
+  )
   ipcMain.handle('ping', (): string => {
     return 'Hello'
   })

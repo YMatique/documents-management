@@ -24,6 +24,7 @@ declare global {
         role: Role
         password: string
       }) => Promise<User>
+      updateUser: (args: { id: number; name: string; email: string; role: Role }) => Promise<User>
     }
   }
 }

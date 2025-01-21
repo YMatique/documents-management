@@ -40,14 +40,17 @@ const Users: React.FC = () => {
     if (editingUser) {
       // Atualizar usuário existente
       const updatedUser = { ...editingUser, ...data }
-      // await window.context.updateUser(updatedUser)
-      console.log(data)
+      await window.context.updateUser({
+        id: updatedUser.id,
+        role: updatedUser.role,
+        name: updatedUser.name,
+        email: updatedUser.email
+      })
 
       setUsers(users.map((u) => (u.id === updatedUser.id ? updatedUser : u)))
     } else {
       // Criar novo usuário
-      console.log(data)
-      // const newUser = await UserModel.create(data.name, data.email, data.role, '12345600')
+
       const newUser = await window.context.createUser({
         name: data.name,
         email: data.email,

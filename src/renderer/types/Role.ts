@@ -1,8 +1,4 @@
 import { Role } from '@prisma/client'
-// export enum UserRole {
-//   Administrador = Role.ADMIN,
-//   Advogado = Role.LAWYER
-// }
 interface UserRoleInterface {
   value: Role
   label: string

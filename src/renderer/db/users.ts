@@ -30,7 +30,12 @@ export class UserModel {
       return false
     }
   }
-  async update(user: User): Promise<User> {
+  static async update(user: {
+    id: number
+    name: string
+    email: string
+    role: Role
+  }): Promise<User> {
     return await prisma.user.update({ where: { id: user.id }, data: user })
   }
   static async create(data: {
