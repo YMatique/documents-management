@@ -1,13 +1,10 @@
+import { UserRole } from '../../../types/Role'
 import ButtonDelete from '../Buttons/ButtonDelete'
 // import ButtonDetails from '../Buttons/ButtonDetails'
 import ButtonEdit from '../Buttons/ButtonEdit'
 import { User } from '@prisma/client'
-// interface User {
-//   id: number
-//   name: string
-//   email: string
-//   role: string
-// }
+// impor {UserRole}
+
 interface CategoryTambleProps {
   data: User[]
   onEdit: (user: User) => void
@@ -48,7 +45,7 @@ const UserTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) =>
                       {user.email}
                     </td>
                     <td className="px-1 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                      {user.role}
+                      {UserRole.map((role) => (role.value == user.role ? role.label : ''))}
                     </td>
                     <td className="px-1 py-4 whitespace-nowrap text-end text-sm font-medium">
                       {/* <ButtonDetails className="" onClick={() => {}} /> */}

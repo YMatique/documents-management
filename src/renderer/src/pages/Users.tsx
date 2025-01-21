@@ -30,6 +30,7 @@ const Users: React.FC = () => {
   const closeModal = () => setIsModalOpen(false)
   const [users, setUsers] = useState<User[]>([])
   const [editingUser, setEditingUser] = useState<User | null>(null)
+  const [deletingUser, setDeletingUser] = useState<number>(0)
 
   const handleAddUser = () => {
     setEditingUser(null)
@@ -41,12 +42,14 @@ const Users: React.FC = () => {
   }
 
   const handleDeleteUser = (id: number) => {
+    // setUsers(users.filter((user) => user.id !== id))
+    setDeletingUser(id)
     setIsModalDeleteOpen(true)
     // setUsers(users.filter((user) => user.id !== id))
     // closeDeleteModal
   }
-  const deleteUser = () => {
-    // setUsers(users.filter((user) => user.id !== id))
+  const deleteUser = async () => {
+    await window.context.deleteUser(deletingUser)
     setIsModalDeleteOpen(false)
   }
   return (

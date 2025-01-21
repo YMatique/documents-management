@@ -4,10 +4,10 @@ import { Role } from '@prisma/client'
 //   Advogado = Role.LAWYER
 // }
 interface UserRoleInterface {
-  role: Role
+  value: Role
   label: string
 }
 export const UserRole: Array<UserRoleInterface> = [
-  { role: Role.ADMIN, label: 'Administrador' },
-  { role: Role.LAWYER, label: 'Advogado' }
+  { value: Role.ADMIN, label: 'Administrador' },
+  { value: Role.LAWYER, label: 'Advogado' }
 ]

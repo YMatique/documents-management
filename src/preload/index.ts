@@ -42,7 +42,8 @@ try {
     maximizeApp: () => ipcRenderer.invoke('maximizeApp'),
     closeApp: () => ipcRenderer.invoke('closeApp'),
     executeQuery: () => ipcRenderer.invoke('executeQuery'),
-    getUsers: () => ipcRenderer.invoke('getUsers')
+    getUsers: () => ipcRenderer.invoke('getUsers'),
+    deleteUser: (args: number) => ipcRenderer.invoke('deleteUser', args)
   })
 } catch (error) {
   console.error(error)

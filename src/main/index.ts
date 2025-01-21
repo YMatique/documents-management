@@ -1,11 +1,9 @@
-import { UserRole } from './../renderer/types/Role'
 import { UserModel } from './../renderer/db/users'
 import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { Role } from '@prisma/client'
 // import insertUpdateDeleteData
 
 function createWindow(): void {
@@ -48,6 +46,7 @@ function createWindow(): void {
     insertUpdateDeleteData()
   })
   ipcMain.handle('getUsers', () => new UserModel().get())
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -80,12 +79,13 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
-  // console.log(UserRole.Advogado)
+
   // IPC test
   // ipcMain.on('ping', () => console.log('pong'))
 
   // ipcMain.on()
 
+  ipcMain.handle('deleteUser', (_, args: number) => new UserModel().delete(args))
   ipcMain.handle('ping', (): string => {
     return 'Hello'
   })

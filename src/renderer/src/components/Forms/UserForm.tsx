@@ -1,7 +1,8 @@
 import Input from './Input'
 import React, { useEffect, useState } from 'react'
 import Select from './Select'
-import { User, Role } from '@prisma/client'
+import { User } from '@prisma/client'
+import { UserRole } from '../../../types/Role'
 
 interface UserProps {
   initialData?: User | null
@@ -21,7 +22,7 @@ const FormUser: React.FC<UserProps> = ({ initialData }) => {
   return (
     <form onSubmit={() => {}}>
       <div className="w-full flex flex-col">
-        <div>
+        <div className="mb-4">
           <Input
             name="name"
             label="Nome"
@@ -32,7 +33,7 @@ const FormUser: React.FC<UserProps> = ({ initialData }) => {
             error={!name ? 'O nome do usuário é obrigatório' : undefined}
           />
         </div>
-        <div>
+        <div className="mb-4">
           <Input
             name="email"
             label="Email"
@@ -42,16 +43,12 @@ const FormUser: React.FC<UserProps> = ({ initialData }) => {
             error={!email ? 'A Email é obrigatória' : undefined}
           />
         </div>
-        <div>
+        <div className="mb-4">
           <Select
             name="role"
             label="Função"
             placeholder="Selecione uma função..."
-            options={[
-              { value: 'lawyer', label: 'Advogado' },
-              { value: 'assistente', label: 'Assistente' },
-              { value: 'admin', label: 'Admin' }
-            ]}
+            options={UserRole}
             value={role}
             onChange={(e) => setRole(e.target.value)}
             error={!role ? 'A função é obrigatória' : undefined}

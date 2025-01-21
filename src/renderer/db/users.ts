@@ -17,11 +17,20 @@ import { PrismaClient, User } from '@prisma/client'
 const prisma = new PrismaClient()
 export class UserModel {
   async get(): Promise<User[]> {
-    const user = await prisma.user.findMany()
+    const user = await prisma.user.findMany({ where: { deletedAt: null } })
     return user
   }
-  async delete(id: number): Promise<void> {
-    await prisma.user.update({ where: { id }, data: { deletedAt: Date() } })
+  async delete(id: number): Promise<boolean> {
+    console.log(id)
+
+    try {
+      await prisma.user.update({ where: { id }, data: { deletedAt: new Date().toISOString() } })
+      return true
+    } catch (err) {
+      console.error(err)
+
+      return false
+    }
   }
   async update(user: User): Promise<User> {
     return await prisma.user.update({ where: { id: user.id }, data: user })

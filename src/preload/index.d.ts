@@ -17,6 +17,7 @@ declare global {
       closeApp: () => void
       executeQuery: () => void
       getUsers: () => Promise<User[]>
+      deleteUser: (number) => Promise<boolean>
     }
   }
 }
