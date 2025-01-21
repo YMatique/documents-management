@@ -1,9 +1,11 @@
+import { UserRole } from './../renderer/types/Role'
 import { UserModel } from './../renderer/db/users'
 import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { Role } from '@prisma/client'
 // import insertUpdateDeleteData
 
 function createWindow(): void {
@@ -54,7 +56,7 @@ function createWindow(): void {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
@@ -78,7 +80,7 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
-
+  // console.log(UserRole.Advogado)
   // IPC test
   // ipcMain.on('ping', () => console.log('pong'))
 

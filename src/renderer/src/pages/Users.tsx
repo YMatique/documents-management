@@ -24,35 +24,27 @@ const Users: React.FC = () => {
   }, [])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const openModal = () => setIsModalOpen(true)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  // const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
   const [users, setUsers] = useState<User[]>([])
   const [editingUser, setEditingUser] = useState<User | null>(null)
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleAddUser = () => {
     setEditingUser(null)
     setIsModalOpen(true)
   }
-
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleEditUser = (user: User) => {
     setEditingUser(user)
     setIsModalOpen(true)
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleDeleteUser = (id: number) => {
     setIsModalDeleteOpen(true)
     // setUsers(users.filter((user) => user.id !== id))
     // closeDeleteModal
   }
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const deleteUser = () => {
     // setUsers(users.filter((user) => user.id !== id))
     setIsModalDeleteOpen(false)

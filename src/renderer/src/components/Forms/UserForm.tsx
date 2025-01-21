@@ -1,13 +1,8 @@
 import Input from './Input'
 import React, { useEffect, useState } from 'react'
 import Select from './Select'
+import { User, Role } from '@prisma/client'
 
-interface User {
-  id: number
-  name: string
-  email: string
-  role: string
-}
 interface UserProps {
   initialData?: User | null
 }

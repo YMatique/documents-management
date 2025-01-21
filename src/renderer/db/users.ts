@@ -1,4 +1,5 @@
 import { PrismaClient, User } from '@prisma/client'
+
 // import prisma from "./db";
 
 // async function createUser(): Promise<User> {
@@ -20,7 +21,7 @@ export class UserModel {
     return user
   }
   async delete(id: number): Promise<void> {
-    await prisma.user.delete({ where: { id } })
+    await prisma.user.update({ where: { id }, data: { deletedAt: Date() } })
   }
   async update(user: User): Promise<User> {
     return await prisma.user.update({ where: { id: user.id }, data: user })
