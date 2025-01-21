@@ -21,8 +21,6 @@ export class UserModel {
     return user
   }
   async delete(id: number): Promise<boolean> {
-    console.log(id)
-
     try {
       await prisma.user.update({ where: { id }, data: { deletedAt: new Date().toISOString() } })
       return true

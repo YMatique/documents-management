@@ -18,7 +18,6 @@ const Users: React.FC = () => {
   const getUserFromDB = async () => await window.context.getUsers() //.then((e) => e)
   useEffect(() => {
     getUserFromDB().then((e: User[]) => {
-      // console.log(e)
       setUsers(e)
     })
   }, [])
@@ -45,12 +44,16 @@ const Users: React.FC = () => {
     // setUsers(users.filter((user) => user.id !== id))
     setDeletingUser(id)
     setIsModalDeleteOpen(true)
-    // setUsers(users.filter((user) => user.id !== id))
+
     // closeDeleteModal
   }
   const deleteUser = async () => {
-    await window.context.deleteUser(deletingUser)
-    setIsModalDeleteOpen(false)
+    const isDeleted = await window.context.deleteUser(deletingUser)
+    if (isDeleted) {
+      setUsers(users.filter((user) => user.id !== deletingUser))
+      setDeletingUser(0)
+      setIsModalDeleteOpen(false)
+    }
   }
   return (
     <div className="flex flex-col  text-sm">
