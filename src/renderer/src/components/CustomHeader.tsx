@@ -13,6 +13,8 @@ function CustomHeader(): JSX.Element {
           <button
             className="w-4 h-4 bg-green-600 rounded-full"
             onClick={async () => {
+              // await insertUpdateDeleteData()
+              // await window.context.executeQuery()
               await window.context.minimizeApp()
             }}
           ></button>

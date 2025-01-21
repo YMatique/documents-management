@@ -40,7 +40,9 @@ try {
     ping: ipcRenderer.invoke('ping'),
     minimizeApp: () => ipcRenderer.invoke('minimizeApp'),
     maximizeApp: () => ipcRenderer.invoke('maximizeApp'),
-    closeApp: () => ipcRenderer.invoke('closeApp')
+    closeApp: () => ipcRenderer.invoke('closeApp'),
+    executeQuery: () => ipcRenderer.invoke('executeQuery'),
+    getUsers: () => ipcRenderer.invoke('getUsers')
   })
 } catch (error) {
   console.error(error)

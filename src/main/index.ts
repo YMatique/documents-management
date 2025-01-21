@@ -1,7 +1,10 @@
+import { UserModel } from './../renderer/db/users'
+import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+// import insertUpdateDeleteData
 
 function createWindow(): void {
   // Create the browser window.
@@ -39,6 +42,10 @@ function createWindow(): void {
     mainWindow.close()
     // app.quit()
   })
+  ipcMain.handle('executeQuery', () => {
+    insertUpdateDeleteData()
+  })
+  ipcMain.handle('getUsers', () => new UserModel().get())
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -47,7 +54,7 @@ function createWindow(): void {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.

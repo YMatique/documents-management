@@ -1,5 +1,5 @@
 // import { ElectronAPI } from '@electron-toolkit/preload'
-
+import { User } from '@prisma/client'
 export interface BtnFunction {
   minimizeApp: () => void
   maximizeApp: () => void
@@ -15,6 +15,8 @@ declare global {
       minimizeApp: () => void
       maximizeApp: () => void
       closeApp: () => void
+      executeQuery: () => void
+      getUsers: () => Promise<User[]>
     }
   }
 }

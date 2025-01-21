@@ -1,18 +1,27 @@
-import React, { useState } from 'react'
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import React, { useState, useEffect } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import Modal from '@renderer/components/Modal/Modal'
 import UserTable from '@renderer/components/Tables/UsersTable'
 import FormUser from '@renderer/components/Forms/UserForm'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
+import { User } from '@prisma/client'
 
-interface User {
-  id: number
-  name: string
-  email: string
-  role: string
-}
+// interface User {
+//   id: number
+//   name: string
+//   email: string
+//   role: string
+// }
 const Users: React.FC = () => {
+  const getUserFromDB = async () => await window.context.getUsers() //.then((e) => e)
+  useEffect(() => {
+    getUserFromDB().then((e: User[]) => {
+      // console.log(e)
+      setUsers(e)
+    })
+  }, [])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -22,18 +31,7 @@ const Users: React.FC = () => {
   const openModal = () => setIsModalOpen(true)
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
-  const [users, setUsers] = useState([
-    { id: 1, name: 'João Silva', email: 'joao@example.com', role: 'advogado' },
-    { id: 2, name: 'Maria Oliveira', email: 'maria@example.com', role: 'assistente' },
-    { id: 3, name: 'Carlos Almeida', email: 'carlos@example.com', role: 'admin' },
-    { id: 4, name: 'Ana Costa', email: 'ana@example.com', role: 'advogado' },
-    { id: 5, name: 'Paula Nunes', email: 'paula@example.com', role: 'assistente' },
-    { id: 6, name: 'Rafael Souza', email: 'rafael@example.com', role: 'advogado' },
-    { id: 7, name: 'Clara Mendes', email: 'clara@example.com', role: 'assistente' },
-    { id: 8, name: 'Fernando Santos', email: 'fernando@example.com', role: 'admin' },
-    { id: 9, name: 'Beatriz Silva', email: 'beatriz@example.com', role: 'advogado' },
-    { id: 10, name: 'Lucas Ferreira', email: 'lucas@example.com', role: 'assistente' }
-  ])
+  const [users, setUsers] = useState<User[]>([])
   const [editingUser, setEditingUser] = useState<User | null>(null)
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

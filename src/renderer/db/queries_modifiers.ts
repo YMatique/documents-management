@@ -238,29 +238,57 @@ const deleteDocument = async () => {
   console.log('Document deleted:', deletedDocument)
 }
 
-const insertUpdateDeleteData = async () => {
-  // Inserir Dados
-  await createUsers()
-  await createCategories()
-  await createCustomers()
-  await createCases()
-  await createDocuments()
+// const insertUpdateDeleteData = async () => {
+//   // Inserir Dados
+//   await createUsers()
+//   await createCategories()
+//   await createCustomers()
+//   await createCases()
+//   await createDocuments()
 
-  // Atualizar Dados
-  await updateUser()
-  await updateCategory()
-  await updateCustomer()
-  await updateCase()
-  await updateDocument()
+//   // Atualizar Dados
+//   await updateUser()
+//   await updateCategory()
+//   await updateCustomer()
+//   await updateCase()
+//   await updateDocument()
 
-  // Deletar Dados
-  await deleteUser()
-  await deleteCategory()
-  await deleteCustomer()
-  await deleteCase()
-  await deleteDocument()
+//   // Deletar Dados
+//   await deleteUser()
+//   await deleteCategory()
+//   await deleteCustomer()
+//   await deleteCase()
+//   await deleteDocument()
+// }
+
+// insertUpdateDeleteData()
+//   .then(() => console.log('Todos os dados foram inseridos, atualizados e removidos com sucesso.'))
+//   .catch((error) => console.error('Erro ao inserir, atualizar ou deletar dados:', error))
+
+export const insertUpdateDeleteData = async () => {
+  try {
+    await createUsers()
+    await createCategories()
+    await createCustomers()
+    await createCases()
+    await createDocuments()
+
+    await updateUser()
+    await updateCategory()
+    await updateCustomer()
+    await updateCase()
+    await updateDocument()
+
+    await deleteUser()
+    await deleteCategory()
+    await deleteCustomer()
+    await deleteCase()
+    await deleteDocument()
+
+    console.log('Todos os dados foram inseridos, atualizados e removidos com sucesso.')
+  } catch (error) {
+    console.error('Erro ao inserir, atualizar ou deletar dados:', error)
+  } finally {
+    await prisma.$disconnect()
+  }
 }
-
-insertUpdateDeleteData()
-  .then(() => console.log('Todos os dados foram inseridos, atualizados e removidos com sucesso.'))
-  .catch((error) => console.error('Erro ao inserir, atualizar ou deletar dados:', error))
