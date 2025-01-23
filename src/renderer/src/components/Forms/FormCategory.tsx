@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import Input from './Input'
 import React, { useEffect, useState } from 'react'
 import Textarea from './Textarea'
@@ -123,8 +124,10 @@ interface Category {
 }
 interface CategoryProps {
   initialData?: Category | null
+  onSubmit: (data: { name: string; description: string }) => void
+  onCancel: () => void
 }
-const FormCategory: React.FC<CategoryProps> = ({ initialData }) => {
+const FormCategory: React.FC<CategoryProps> = ({ initialData, onSubmit, onCancel }) => {
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
 
@@ -134,8 +137,14 @@ const FormCategory: React.FC<CategoryProps> = ({ initialData }) => {
       setDescription(initialData.description)
     }
   })
+
+  const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!category || !description) return
+    onSubmit({ name: category, description: description })
+  }
   return (
-    <form onSubmit={() => {}}>
+    <form onSubmit={handleOnSubmit}>
       <div className="w-full flex flex-col">
         <div>
           <Input
@@ -158,6 +167,21 @@ const FormCategory: React.FC<CategoryProps> = ({ initialData }) => {
             error={!description ? 'A descrição é obrigatória' : undefined}
           />
         </div>
+      </div>
+      <div className="flex justify-end gap-2 mt-6">
+        <button
+          type="button"
+          onClick={onCancel}
+          className="px-4 py-2 text-gray-900 font-semibold bg-gray-200 hover:bg-gray-300 "
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          className="px-4 py-2 text-gray-900 font-semibold bg-primary hover:bg-primary"
+        >
+          Salvar
+        </button>
       </div>
     </form>
   )

@@ -10,7 +10,7 @@ interface Category {
 interface CategoryTambleProps {
   data: Category[]
   onEdit: (category: Category) => void
-  onDelete: (category: Category) => void
+  onDelete: (id: number) => void
 }
 // eslint-disable-next-line react/prop-types
 const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }) => {
@@ -46,7 +46,7 @@ const CategoryTable: React.FC<CategoryTambleProps> = ({ data, onEdit, onDelete }
                     <td className="px-1 py-4 whitespace-nowrap text-end text-sm font-medium">
                       {/* <ButtonDetails className="" onClick={() => {}} /> */}
                       <ButtonEdit className="" onClick={() => onEdit(category)}></ButtonEdit>
-                      <ButtonDelete className="" onClick={() => onDelete(category)} />
+                      <ButtonDelete className="" onClick={() => onDelete(category.id)} />
                     </td>
                   </tr>
                 ))}
