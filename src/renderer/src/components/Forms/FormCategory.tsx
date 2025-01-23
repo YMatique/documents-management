@@ -136,7 +136,7 @@ const FormCategory: React.FC<CategoryProps> = ({ initialData, onSubmit, onCancel
       setCategory(initialData.name)
       setDescription(initialData.description)
     }
-  })
+  }, [initialData])
 
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault()

@@ -38,12 +38,17 @@ const Categories: React.FC = () => {
   const handleCategorySubmit = async (data: { name: string; description: string }) => {
     if (editCategory) {
       // await window.context.
-      console.log(data)
+      // console.log(data)
+      const updateCategory = { ...editCategory, ...data }
+      await window.context.updateCategory(updateCategory)
+      setCategories(
+        categories.map((category) => (category.id === editCategory.id ? updateCategory : category))
+      )
     } else {
       const category = await window.context.createCategory(data)
       setCategories([...categories, category])
-      closeModal()
     }
+    closeModal()
   }
   const handleDeleteCategory = (category: Category) => {
     setIsModalDeleteOpen(true)
