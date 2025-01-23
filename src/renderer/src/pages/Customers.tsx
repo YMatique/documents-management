@@ -5,7 +5,7 @@ import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import CustomerTable from '@renderer/components/Tables/CustomerTable'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 interface Customer {
   id: number
   name: string
@@ -15,35 +15,14 @@ interface Customer {
 }
 const Customers: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const closeModal = () => setIsModalOpen(false)
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const closeModal = () => setIsModalOpen(false)
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
+  const [customers, setCustomers] = useState<Customer[]>([])
 
-  const [customers, setCustomers] = useState([
-    {
-      id: 1,
-      name: 'Aly Olaya',
-      email: 'aly@gmail',
-      phone: '9887713',
-      address: 'Manganhe'
-    },
-    {
-      id: 2,
-      name: 'Inalda Cumbane',
-      email: 'Inalda@gmail',
-      phone: '9887713',
-      address: 'Manganhe'
-    },
-    {
-      id: 3,
-      name: 'Armando Nhika',
-      email: 'armando@gmail',
-      phone: '9887713',
-      address: 'Manganhe'
-    }
-  ])
+  useEffect(() => {
+    window.context.getCustomers().then(setCustomers)
+  }, [])
   const [editCustomer, setEditCustomer] = useState<Customer | null>(null)
   const handleDeleteCostumer = (id: number) => {
     setIsModalDeleteOpen(true)
