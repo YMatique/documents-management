@@ -12,7 +12,7 @@ interface CaseTableProps {
 }
 // eslint-disable-next-line react/prop-types
 const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className="flex flex-col h-full">

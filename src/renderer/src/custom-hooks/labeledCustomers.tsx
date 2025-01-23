@@ -13,5 +13,7 @@ export default function labeledCustomersHook(): Array<{ label: string; value: st
     setCustomers(auxCostumer)
   }, [])
 
+  // console.log(customers)
+
   return customers
 }

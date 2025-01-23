@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
-// import Modal from '@renderer/components/Modal/Modal'
+import Modal from '@renderer/components/Modal/Modal'
 import CaseTable from '@renderer/components/Tables/CaseTable'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import { Link } from 'react-router-dom'
 import { Cases as CasesDTO } from '@prisma/client'
+import CaseForm from '@renderer/components/Forms/CaseForm'
 
 const Cases: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -26,7 +27,6 @@ const Cases: React.FC = () => {
   useEffect(() => {
     window.context.getCases().then(setCases)
   }, [])
-
   const handleDeleteCase = async () => {
     if (deletingCase) {
       const isDeleted = await window.context.deleteCase(deletingCase)
@@ -47,17 +47,18 @@ const Cases: React.FC = () => {
             <p className="font-light text-sm">Todos os Casos</p>
           </div>
           <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
-            <Link to="/cases/create">
-              <ButtonPrimary label="Cadastrar" className="" onClick={openModal} />
-            </Link>
+            {/* <Link to="/cases/create"> */}
+            <ButtonPrimary label="Cadastrar" className="" onClick={openModal} />
+            {/* </Link> */}
           </div>
         </div>
       </HeaderPage>
       <div className="flex flex-col h-full">
         <CaseTable data={cases} onDelete={openDeleteModal} onView={() => {}} />
       </div>
-      {/* <Modal
-        title="hjhj"
+      <Modal
+        maxWidth="max-w-2xl"
+        title="Cadastrar Caso"
         isOpen={isModalOpen}
         onClose={closeModal}
         footer={
@@ -78,8 +79,8 @@ const Cases: React.FC = () => {
           </div>
         }
       >
-        <p>Este é o conteúdo do modal.</p>
-      </Modal> */}
+        <CaseForm />
+      </Modal>
 
       <ModalDelete
         isOpen={isModalDeleteOpen}

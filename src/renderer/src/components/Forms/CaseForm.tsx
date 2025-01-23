@@ -5,26 +5,25 @@ import ButtonPrimary from '../Buttons/ButtonPrimary'
 import Input from './Input'
 import Select from './Select'
 import Textarea from './Textarea'
-import getCategoriesHook from '@renderer/custom-hooks/getCategories'
 import labeledCategoriesHook from '@renderer/custom-hooks/labeledCategory'
-import getCustomersHook from '@renderer/custom-hooks/getCustomers'
+import labeledCustomersHook from '@renderer/custom-hooks/labeledCustomers'
 
 const CaseForm: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const closeModal = () => setIsModalOpen(false)
+  // const [isModalOpen, setIsModalOpen] = useState(false)
+  // const closeModal = () => setIsModalOpen(false)
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
   const categories = labeledCategoriesHook()
-  const customers = getCustomersHook()
+  const customers = labeledCustomersHook()
 
-  useEffect(() => {}, [])
+  // useEffect(() => {}, [])
   return (
     <div>
       <div>
         <form action="" className=" ">
-          <div className="flex flex-wrap">
-            <div className="md:w-2/3 bg-white dark:bg-darkColor p-4 pt-4">
+          <div className="flex flex-col">
+            <div className="  p-4 pt-4">
               <div className="mb-4">
                 <Input
                   label="Título do Caso"
@@ -60,14 +59,14 @@ const CaseForm: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="md:w-1/3 md:pl-8 ">
-              <div className="bg-white dark:bg-darkColor p-4">
+            <div className="">
+              <div className="   p-4">
                 <div className="mb-4">
                   <h4 className="font-semibold  flex justify-between align-middle items-center border-b-gray-400 dark:border-b-gray-700 border border-x-0 border-t-0">
                     <span>Cliente</span>{' '}
                     <ButtonPlus
                       onClick={() => {
-                        setIsModalOpen(true)
+                        // setIsModalOpen(true)
                       }}
                       className=""
                     />{' '}
@@ -79,7 +78,7 @@ const CaseForm: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="md:w-2/3 flex justify-end bg-white dark:bg-darkColor p-4">
+            <div className="flex justify-end  p-4">
               <ButtonPrimary label="Salvar" className=" " onClick={() => {}} />
             </div>
           </div>
@@ -88,3 +87,5 @@ const CaseForm: React.FC = () => {
     </div>
   )
 }
+
+export default CaseForm

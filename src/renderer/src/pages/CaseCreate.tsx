@@ -8,6 +8,7 @@ import Select from '@renderer/components/Forms/Select'
 import Textarea from '@renderer/components/Forms/Textarea'
 import HeaderPage from '@renderer/components/HeaderPage'
 import Modal from '@renderer/components/Modal/Modal'
+import labeledCategoriesHook from '@renderer/custom-hooks/labeledCategory'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,16 +17,8 @@ const CaseCreate: React.FC = () => {
   const closeModal = () => setIsModalOpen(false)
 
   const navigate = useNavigate()
-  const categories = [
-    { value: 'Família', label: 'Família' },
-    { value: 'Lei Civil', label: 'Lei Civil' },
-    { value: 'construção', label: 'Lei de Construção' }
-  ]
-  const [customers, setCustomers] = useState([
-    { value: 'António Vasco', label: 'António Vasco' },
-    { value: 'Inalda Cumbane', label: 'Inalda Cumbane' },
-    { value: 'Aly Olaia', label: 'Aly Olaia' }
-  ])
+  const categories = labeledCategoriesHook()
+  const customers = labeledCategoriesHook()
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
