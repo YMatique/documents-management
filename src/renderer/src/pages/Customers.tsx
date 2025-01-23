@@ -19,21 +19,37 @@ const Customers: React.FC = () => {
   const closeModal = () => setIsModalOpen(false)
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
   const [customers, setCustomers] = useState<Customer[]>([])
+  const [editCustomer, setEditCustomer] = useState<Customer | null>(null)
 
   useEffect(() => {
     window.context.getCustomers().then(setCustomers)
   }, [])
-  const [editCustomer, setEditCustomer] = useState<Customer | null>(null)
-  const handleDeleteCostumer = (id: number) => {
-    setIsModalDeleteOpen(true)
-  }
-  const handleEditCustomer = (customer: Customer) => {
-    setEditCustomer(customer)
-    setIsModalOpen(true)
-  }
-  const handleAddCostumer = () => {
+
+  const openCreateModal = () => {
     setEditCustomer(null)
     setIsModalOpen(true)
+  }
+  const openEditModal = () => {
+    setIsModalOpen(true)
+  }
+  const openDeleteModal = () => {
+    setIsModalDeleteOpen(true)
+  }
+
+  const handleOnSubmitCustomer = async (data: {
+    name: string
+    email: string
+    phone: string
+    address: string
+  }) => {
+    if (editCustomer) {
+      const updateCoustomer = { ...editCustomer, data }
+      await window.context.updateCustomer(updateCoustomer)
+      setCustomers(customers.map((c) => (c.id === updateCoustomer.id ? updateCoustomer : c)))
+    } else {
+      const customer = await window.context.createCustomer(data)
+      setCustomers([...customers, customer])
+    }
   }
   return (
     <div className="flex flex-col  text-sm h-full">
@@ -44,40 +60,23 @@ const Customers: React.FC = () => {
             <p className="font-light text-sm">Todos os Clientes</p>
           </div>
           <div className="flex justify-center items-end mr-3 w-1/2 flex-col">
-            <ButtonPrimary label="Cadastrar" className="" onClick={handleAddCostumer} />
+            <ButtonPrimary label="Cadastrar" className="" onClick={openCreateModal} />
           </div>
         </div>
       </HeaderPage>
       <div className="flex flex-col h-full">
-        <CustomerTable
-          data={customers}
-          onDelete={handleDeleteCostumer}
-          onEdit={handleEditCustomer}
-        />
+        <CustomerTable data={customers} onDelete={openDeleteModal} onEdit={openEditModal} />
       </div>
       <Modal
-        title="Adicionar Usuário"
+        title={editCustomer ? 'Editar Cliente' : 'Cadastrar Cliente'}
         isOpen={isModalOpen}
         onClose={closeModal}
-        footer={
-          <div className="flex justify-end gap-2">
-            <button
-              onClick={closeModal}
-              className="px-2 py-2 bg-gray-500 text-white text-sm hover:bg-gray-600"
-            >
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              form="formulario-modal"
-              className="px-2 py-2 bg-blue-500 text-white hover:bg-blue-600"
-            >
-              Salvar
-            </button>
-          </div>
-        }
       >
-        <CustomerForm initialData={editCustomer} />
+        <CustomerForm
+          initialData={editCustomer}
+          onCancel={closeModal}
+          onSubmit={handleOnSubmitCustomer}
+        />
       </Modal>
 
       <ModalDelete
