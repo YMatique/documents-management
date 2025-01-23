@@ -17,7 +17,12 @@ const Configurations: React.FC = () => {
             </div>
           </div>
         </HeaderPage>
-        <div className="flex flex-col"></div>
+        <div className="flex flex-col">
+          <h4>Activate SoftDelete</h4>
+          <h4>Change Theme</h4>
+          <h4>Change my password</h4>
+          <h4>Remeber my Password</h4>
+        </div>
       </div>
     </>
   )

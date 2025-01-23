@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, { useState } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
@@ -15,33 +16,10 @@ interface Cases {
 }
 const Cases: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const openModal = () => setIsModalOpen(true)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const closeModal = () => setIsModalOpen(false)
-  // const dropdownItems = [
-  //   {
-  //     label: 'Newsletter',
-  //     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  //     onClick: () => {
-  //       alert('Clicou em Newsletter!')
-  //     }
-  //   },
-  //   {
-  //     label: 'Purchases',
-  //     href: '/purchases' // Redireciona para essa página
-  //   },
-  //   {
-  //     label: 'Downloads',
-  //     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  //     onClick: () => console.log('Iniciando download...')
-  //   },
-  //   {
-  //     label: 'Team Account',
-  //     href: '/team-account' // Redireciona para essa página
-  //   }
-  // ]
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+  const closeDeleteModal = () => setIsModalDeleteOpen(false)
 
   const [cases, setCases] = useState([
     {
@@ -93,14 +71,11 @@ const Cases: React.FC = () => {
       status: 'Em andamento'
     }
   ])
-  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const closeDeleteModal = () => setIsModalDeleteOpen(false)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/explicit-function-return-type
+
   const handleDeleteCase = (id: number) => {
     setIsModalDeleteOpen(true)
   }
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+
   const handleEditCase = (id: number) => {}
   return (
     <div className="flex flex-col  text-sm h-full">

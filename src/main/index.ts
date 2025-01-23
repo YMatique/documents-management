@@ -1,3 +1,4 @@
+import { CaseModel } from './../renderer/db/cases'
 import { CustomerModel } from './../renderer/db/customers'
 import { CategoryModel } from './../renderer/db/category'
 import { UserModel } from '../renderer/db/users'
@@ -6,7 +7,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { Role } from '@prisma/client'
+import { Cases, Role, Status } from '@prisma/client'
 // import insertUpdateDeleteData
 
 function createWindow(): void {
@@ -132,6 +133,39 @@ app.whenReady().then(() => {
   ipcMain.handle('ping', (): string => {
     return 'Hello'
   })
+  // Cases
+  ipcMain.handle('getCases', () => CaseModel.get())
+  ipcMain.handle(
+    'createCase',
+    (
+      _,
+      data: {
+        title: string
+        description: string
+        status: Status
+        categoryId: number
+        userId: number
+        customerId: number
+      }
+    ) => CaseModel.create(data)
+  )
+  ipcMain.handle(
+    'updateCase',
+    (
+      _,
+      data: {
+        id: number
+        title: string
+        description: string
+        status: Status
+        categoryId: number
+        userId: number
+        customerId: number
+      }
+    ) => CaseModel.update(data)
+  )
+  ipcMain.handle('deleteCase', (_, id: number) => CaseModel.delete(id))
+
   createWindow()
 
   app.on('activate', function () {

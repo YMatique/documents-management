@@ -7,7 +7,7 @@ import UserTable from '@renderer/components/Tables/UsersTable'
 import UserForm from '@renderer/components/Forms/UserForm'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import { User, Role } from '@prisma/client'
-import { UserModel } from '../../db/users'
+// import { UserModel } from '../../db/users'
 
 const Users: React.FC = () => {
   const [users, setUsers] = useState<User[]>([])
@@ -62,7 +62,6 @@ const Users: React.FC = () => {
     closeModal()
   }
 
-  // Excluir usuário
   const openDeleteModal = (id: number) => {
     setDeletingUser(id)
     setIsModalDeleteOpen(true)

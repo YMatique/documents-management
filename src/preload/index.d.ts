@@ -1,5 +1,5 @@
 // import { ElectronAPI } from '@electron-toolkit/preload'
-import { User } from '@prisma/client'
+import { Cases, User } from '@prisma/client'
 export interface BtnFunction {
   minimizeApp: () => void
   maximizeApp: () => void
@@ -45,6 +45,26 @@ declare global {
         address: string
       }) => Promise<Customer>
       deleteCustomer: (args: number) => Promise<boolean>
+      // Cases
+      getCases: () => Promise<Cases[]>
+      createCase: (data: {
+        title: string
+        description: string
+        status: Status
+        categoryId: number
+        userId: number
+        customerId: number
+      }) => Promise<Case>
+      updateCase: (data: {
+        id: number
+        title: string
+        description: string
+        status: Status
+        categoryId: number
+        userId: number
+        customerId: number
+      }) => Promise<Cases>
+      deleteCase: (id: number) => Promise<boolean>
     }
   }
 }
