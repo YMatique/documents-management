@@ -9,8 +9,6 @@ export class CustomerModel {
     phone: string
     address: string
   }): Promise<Customer> {
-    console.log(data)
-
     return await prisma.customer.create({ data: data })
   }
   static async update(data: {
@@ -20,13 +18,11 @@ export class CustomerModel {
     phone: string
     address: string
   }): Promise<Customer> {
-    console.log(data)
-
     return await prisma.customer.update({ where: { id: data.id }, data: data })
   }
 
   static async get(): Promise<Customer[]> {
-    return await prisma.customer.findMany()
+    return await prisma.customer.findMany({ where: { deletedAt: null } })
   }
   static async delete(id: number): Promise<boolean> {
     try {

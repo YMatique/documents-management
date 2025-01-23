@@ -20,6 +20,7 @@ const Customers: React.FC = () => {
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
   const [customers, setCustomers] = useState<Customer[]>([])
   const [editCustomer, setEditCustomer] = useState<Customer | null>(null)
+  const [deleteCustomer, setDeleteCustomer] = useState<number | null>(null)
 
   useEffect(() => {
     window.context.getCustomers().then(setCustomers)
@@ -33,7 +34,8 @@ const Customers: React.FC = () => {
     setIsModalOpen(true)
     setEditCustomer(customer)
   }
-  const openDeleteModal = () => {
+  const openDeleteModal = (id: number) => {
+    setDeleteCustomer(id)
     setIsModalDeleteOpen(true)
   }
 
@@ -52,6 +54,15 @@ const Customers: React.FC = () => {
       setCustomers([...customers, customer])
     }
     closeModal()
+  }
+  const handleDeleteCustomer = async () => {
+    if (deleteCustomer) {
+      const isDeleted = await window.context.deleteCustomer(deleteCustomer)
+      if (isDeleted) {
+        setCustomers(customers.filter((c) => c.id != deleteCustomer))
+      }
+    }
+    closeDeleteModal()
   }
   return (
     <div className="flex flex-col  text-sm h-full">
@@ -85,7 +96,7 @@ const Customers: React.FC = () => {
         isOpen={isModalDeleteOpen}
         onClose={closeDeleteModal}
         title="Eliminar a Categoria"
-        onDelete={() => {}}
+        onDelete={handleDeleteCustomer}
       >
         <p className="text-gray-500 dark:text-neutral-500">
           Tem a certeza que pretende eliminar este cliente da aplicação?
