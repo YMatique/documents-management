@@ -124,7 +124,7 @@ app.whenReady().then(() => {
     ) => CustomerModel.create(args)
   )
   ipcMain.handle(
-    'updateCustomers',
+    'updateCustomer',
     (_, args: { id: number; name: string; email: string; phone: string; address: string }) =>
       CustomerModel.update(args)
   )

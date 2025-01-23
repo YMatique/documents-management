@@ -9,6 +9,8 @@ export class CustomerModel {
     phone: string
     address: string
   }): Promise<Customer> {
+    console.log(data)
+
     return await prisma.customer.create({ data: data })
   }
   static async update(data: {
@@ -18,6 +20,8 @@ export class CustomerModel {
     phone: string
     address: string
   }): Promise<Customer> {
+    console.log(data)
+
     return await prisma.customer.update({ where: { id: data.id }, data: data })
   }
 

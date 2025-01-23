@@ -29,8 +29,9 @@ const Customers: React.FC = () => {
     setEditCustomer(null)
     setIsModalOpen(true)
   }
-  const openEditModal = () => {
+  const openEditModal = (customer: Customer) => {
     setIsModalOpen(true)
+    setEditCustomer(customer)
   }
   const openDeleteModal = () => {
     setIsModalDeleteOpen(true)
@@ -43,13 +44,14 @@ const Customers: React.FC = () => {
     address: string
   }) => {
     if (editCustomer) {
-      const updateCoustomer = { ...editCustomer, data }
-      await window.context.updateCustomer(updateCoustomer)
-      setCustomers(customers.map((c) => (c.id === updateCoustomer.id ? updateCoustomer : c)))
+      const updateCustomer = { ...editCustomer, ...data }
+      await window.context.updateCustomer(updateCustomer)
+      setCustomers(customers.map((c) => (c.id === updateCustomer.id ? updateCustomer : c)))
     } else {
       const customer = await window.context.createCustomer(data)
       setCustomers([...customers, customer])
     }
+    closeModal()
   }
   return (
     <div className="flex flex-col  text-sm h-full">

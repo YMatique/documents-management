@@ -28,7 +28,7 @@ const CustomerForm: React.FC<CustomerFormProps> = ({ initialData, onSubmit, onCa
       setName(initialData.name)
       setPhone(initialData.phone)
     }
-  }, [])
+  }, [initialData])
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!name || !email || !phone || !address) return
