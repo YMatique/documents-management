@@ -1,3 +1,4 @@
+import { CategoryModel } from './../renderer/db/category'
 import { UserModel } from '../renderer/db/users'
 // import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
@@ -97,6 +98,15 @@ app.whenReady().then(() => {
     (_, args: { id: number; name: string; email: string; role: Role; password: string }) =>
       UserModel.update(args)
   )
+
+  ipcMain.handle('createCategory', (_, args: { id: number; name: string; description: string }) =>
+    CategoryModel.create(args)
+  )
+  ipcMain.handle('updateCategory', (_, args: { id: number; name: string; description: string }) =>
+    CategoryModel.update(args)
+  )
+  ipcMain.handle('deleteCategory', (_, args: number) => CategoryModel.delete(args))
+  ipcMain.handle('getCategory', () => CategoryModel.get())
   ipcMain.handle('ping', (): string => {
     return 'Hello'
   })

@@ -68,13 +68,13 @@ const UserForm: React.FC<UserFormProps> = ({ initialData, onSubmit, onCancel }) 
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 text-gray-600 bg-gray-200 hover:bg-gray-300 rounded"
+          className="px-4 py-2 text-gray-900 font-semibold bg-gray-200 hover:bg-gray-300 "
         >
           Cancelar
         </button>
         <button
           type="submit"
-          className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded"
+          className="px-4 py-2 text-gray-900 font-semibold bg-primary hover:bg-primary"
         >
           Salvar
         </button>

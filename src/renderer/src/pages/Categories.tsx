@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
 import Modal from '@renderer/components/Modal/Modal'
 import FormCategory from '@renderer/components/Forms/FormCategory'
 import CategoryTable from '@renderer/components/Tables/CategoryTable'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
+import { Category } from '@prisma/client'
 
-interface Category {
-  id: number
-  name: string
-  description: string
-}
-const Category: React.FC = () => {
+const Categories: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
@@ -33,23 +29,10 @@ const Category: React.FC = () => {
     setIsModalOpen(true)
   }
 
-  const [categories, setCategories] = useState([
-    {
-      id: 1,
-      name: 'Família',
-      description: 'aads asd asd '
-    },
-    {
-      id: 2,
-      name: 'Civil',
-      description: 'aads asd asd '
-    },
-    {
-      id: 3,
-      name: 'Roubo',
-      description: 'aads asd asd '
-    }
-  ])
+  const [categories, setCategories] = useState<Category[]>([])
+  useEffect(() => {
+    window.context.getCategory().then(setCategories)
+  }, [])
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleDeleteCategory = (category: Category) => {
     setIsModalDeleteOpen(true)
@@ -117,4 +100,4 @@ const Category: React.FC = () => {
   )
 }
 
-export default Category
+export default Categories

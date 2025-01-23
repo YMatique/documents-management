@@ -6,7 +6,7 @@ import { MainContent, RootLayout } from './components/AppLayout'
 import SideBar from './components/Sidebar'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
-import Category from './pages/Category'
+import Categories from './pages/Categories'
 import CustomHeader from './components/CustomHeader'
 import { NavLink } from 'react-router-dom'
 import { FaHouse } from 'react-icons/fa6'
@@ -174,7 +174,7 @@ function App(): JSX.Element {
         <MainContent className="pl-4 ">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/category" element={<Category />} />
+            <Route path="/category" element={<Categories />} />
             <Route path="/cases" element={<Cases />} />
             <Route path="/cases/create" element={<CaseCreate />} />
             <Route path="/cases/edit/:id" element={<CaseEdit />} />
