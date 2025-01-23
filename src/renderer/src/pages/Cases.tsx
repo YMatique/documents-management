@@ -26,6 +26,7 @@ const Cases: React.FC = () => {
   useEffect(() => {
     window.context.getCases().then(setCases)
   }, [])
+
   const handleDeleteCase = async () => {
     if (deletingCase) {
       const isDeleted = await window.context.deleteCase(deletingCase)
