@@ -69,7 +69,7 @@ model Cases{
    userId    Int
   createdAt   DateTime    @default(now())
   updatedAt DateTime @updatedAt 
-  deletedAt DateTime?
+  deletedAt DateTime? 
   documents Document[]
   user     User    @relation(fields: [userId], references: [id])
  

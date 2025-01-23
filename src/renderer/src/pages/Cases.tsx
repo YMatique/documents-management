@@ -1,19 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderPage from '@renderer/components/HeaderPage'
 import ButtonPrimary from '@renderer/components/Buttons/ButtonPrimary'
-import Modal from '@renderer/components/Modal/Modal'
+// import Modal from '@renderer/components/Modal/Modal'
 import CaseTable from '@renderer/components/Tables/CaseTable'
 import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import { Link } from 'react-router-dom'
+import { Cases as CasesDTO } from '@prisma/client'
 
-interface Cases {
-  id: number
-  title: string
-  tasks: number
-  status: string
-  docs: number
-}
 const Cases: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const openModal = () => setIsModalOpen(true)
@@ -21,59 +15,25 @@ const Cases: React.FC = () => {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
 
-  const [cases, setCases] = useState([
-    {
-      id: 1,
-      title: 'Jurisdição mal feita',
-      tasks: 10,
-      docs: 10,
-      code: 13243,
-      status: 'Pendende'
-    },
-    {
-      id: 2,
-      title: 'Família não dada mantimento',
-      tasks: 4,
-      docs: 6,
-      code: 11243,
-      status: 'Arquivado'
-    },
-    {
-      id: 3,
-      title: 'Bla bla abla',
-      tasks: 5,
-      code: 63243,
-      docs: 2,
-      status: 'Pendende'
-    },
-    {
-      id: 4,
-      title: 'Jurisdição mal feita',
-      tasks: 10,
-      code: 20241030,
-      docs: 10,
-      status: 'Pendende'
-    },
-    {
-      id: 5,
-      title: 'Nada bom',
-      tasks: 10,
-      code: 20240430,
-      docs: 10,
-      status: 'Pendende'
-    },
-    {
-      id: 6,
-      title: 'Caso mal parado',
-      tasks: 5,
-      code: 13243,
-      docs: 8,
-      status: 'Em andamento'
-    }
-  ])
+  const [deletingCase, setDeletingCase] = useState<number | null>(null)
 
-  const handleDeleteCase = (id: number) => {
+  const [cases, setCases] = useState<CasesDTO[]>([])
+
+  const openDeleteModal = (id: number) => {
+    setDeletingCase(id)
     setIsModalDeleteOpen(true)
+  }
+  useEffect(() => {
+    window.context.getCases().then(setCases)
+  }, [])
+  const handleDeleteCase = async () => {
+    if (deletingCase) {
+      const isDeleted = await window.context.deleteCase(deletingCase)
+      if (isDeleted) {
+        setCases(cases.filter((c) => c.id !== deletingCase))
+      }
+    }
+    closeDeleteModal()
   }
 
   const handleEditCase = (id: number) => {}
@@ -93,7 +53,7 @@ const Cases: React.FC = () => {
         </div>
       </HeaderPage>
       <div className="flex flex-col h-full">
-        <CaseTable data={cases} onDelete={handleDeleteCase} onView={() => {}} />
+        <CaseTable data={cases} onDelete={openDeleteModal} onView={() => {}} />
       </div>
       {/* <Modal
         title="hjhj"
@@ -124,7 +84,7 @@ const Cases: React.FC = () => {
         isOpen={isModalDeleteOpen}
         onClose={closeDeleteModal}
         title="Eliminar a Categoria"
-        onDelete={() => {}}
+        onDelete={handleDeleteCase}
       >
         <p className="text-gray-500 dark:text-neutral-500">
           Tem a certeza que pretende eliminar esta categoria da aplicação? <br /> Note que esta ação

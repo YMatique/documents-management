@@ -17,10 +17,16 @@ export class CaseModel {
   static async get(): Promise<Cases[]> {
     return await prisma.cases.findMany({
       where: { deletedAt: null },
+      //   omit: { deletedAt: true },
       include: {
         customer: {
           select: {
             name: true
+          }
+        },
+        _count: {
+          select: {
+            documents: true
           }
         },
         user: {

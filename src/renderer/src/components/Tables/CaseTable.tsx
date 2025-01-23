@@ -2,15 +2,7 @@ import { Link } from 'react-router-dom'
 import ButtonDelete from '../Buttons/ButtonDelete'
 import ButtonDetails from '../Buttons/ButtonDetails'
 import ButtonEdit from '../Buttons/ButtonEdit'
-
-interface Cases {
-  id: number
-  code: string
-  title: string
-  tasks: number
-  status: string
-  docs: number
-}
+import { Cases } from '@prisma/client'
 
 interface CaseTableProps {
   data: Cases[]
@@ -20,6 +12,8 @@ interface CaseTableProps {
 }
 // eslint-disable-next-line react/prop-types
 const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
+  console.log(data)
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex mb-4">{/* <Dropdown label="Categorias" items={dropdownItems} /> */}</div>
@@ -40,7 +34,7 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
                       Estado
                     </th>
                     <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
-                      Actividades
+                      Cliente
                     </th>
                     <th scope="col" className="px-1 py-3 text-start text-xs font-medium ">
                       Docs
@@ -55,7 +49,7 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
                   {data.map((caso) => (
                     <tr key={caso.id} className="hover:bg-slate-100 dark:hover:bg-[#1f232c]">
                       <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
-                        #{caso.code}
+                        #{caso.id}
                       </td>
                       <td className="px-1 py-4 whitespace-nowrap text-sm font-base text-gray-800 dark:text-gray-300">
                         {caso.title}
@@ -64,10 +58,10 @@ const CaseTable: React.FC<CaseTableProps> = ({ data, onView, onDelete }) => {
                         {caso.status}
                       </td>
                       <td className="px-1 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        {caso.tasks}
+                        {caso.customer.name}
                       </td>
                       <td className="px-1 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                        {caso.docs}
+                        {caso._count.documents}
                       </td>
                       <td className="px-1 py-4  whitespace-nowrap text-end text-sm font-medium">
                         <ButtonDetails className="" onClick={() => onView(caso.id)} />

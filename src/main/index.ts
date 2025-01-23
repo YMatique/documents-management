@@ -166,6 +166,12 @@ app.whenReady().then(() => {
   )
   ipcMain.handle('deleteCase', (_, id: number) => CaseModel.delete(id))
 
+  // const ccc = async () => CaseModel.get()
+  // ccc().then((e) => {
+  //   console.log(e)
+  // })
+  // console.log(ccc())
+
   createWindow()
 
   app.on('activate', function () {
