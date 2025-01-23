@@ -1,3 +1,4 @@
+import { CustomerModel } from './../renderer/db/customers'
 import { CategoryModel } from './../renderer/db/category'
 import { UserModel } from '../renderer/db/users'
 // import { insertUpdateDeleteData } from '../renderer/db/queries_modifiers'
@@ -107,6 +108,27 @@ app.whenReady().then(() => {
   )
   ipcMain.handle('deleteCategory', (_, args: number) => CategoryModel.delete(args))
   ipcMain.handle('getCategory', () => CategoryModel.get())
+
+  //Customers
+  ipcMain.handle('getCustomers', () => CustomerModel.get())
+  ipcMain.handle(
+    'createCustomer',
+    (
+      _,
+      args: {
+        name: string
+        email: string
+        phone: string
+        address: string
+      }
+    ) => CustomerModel.create(args)
+  )
+  ipcMain.handle(
+    'updateCustomers',
+    (_, args: { id: number; name: string; email: string; phone: string; address: string }) =>
+      CustomerModel.update(args)
+  )
+  ipcMain.handle('deleteCustomer', (_, args: number) => CustomerModel.delete(args))
   ipcMain.handle('ping', (): string => {
     return 'Hello'
   })

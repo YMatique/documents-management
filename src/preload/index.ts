@@ -54,7 +54,19 @@ try {
       ipcRenderer.invoke('createCategory', args),
     updateCategory: (args: { id: number; name: string; description: string }) =>
       ipcRenderer.invoke('updateCategory', args),
-    deleteCategory: (args: number) => ipcRenderer.invoke('deleteCategory', args)
+    deleteCategory: (args: number) => ipcRenderer.invoke('deleteCategory', args),
+    // Customers
+    createCustomer: (args: { name: string; email: string; phone: string; address: string }) =>
+      ipcRenderer.invoke('createCustomer', args),
+    updateCustomer: (args: {
+      id: number
+      name: string
+      email: string
+      phone: string
+      address: string
+    }) => ipcRenderer.invoke('updateCustomer', args),
+    getCustomers: () => ipcRenderer.invoke('getCustomers'),
+    deleteCustomer: (args: number) => ipcRenderer.invoke('deleteCustomer', args)
   })
 } catch (error) {
   console.error(error)
