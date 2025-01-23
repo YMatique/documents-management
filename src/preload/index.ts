@@ -49,7 +49,9 @@ try {
       ipcRenderer.invoke('createUser', args),
     updateUser: (args: { id: number; name: string; email: string; role: Role }) =>
       ipcRenderer.invoke('updateUser', args),
-    getCategory: () => ipcRenderer.invoke('getCategory')
+    getCategory: () => ipcRenderer.invoke('getCategory'),
+    createCategory: (args: { name: string; description: string }) =>
+      ipcRenderer.invoke('createCategory', args)
   })
 } catch (error) {
   console.error(error)

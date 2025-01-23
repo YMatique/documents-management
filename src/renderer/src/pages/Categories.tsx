@@ -9,6 +9,7 @@ import ModalDelete from '@renderer/components/Modal/ModalDelete'
 import { Category } from '@prisma/client'
 
 const Categories: React.FC = () => {
+  const [categories, setCategories] = useState<Category[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
   const [editCategory, setEditCategory] = useState<Category | null>(null)
@@ -29,7 +30,7 @@ const Categories: React.FC = () => {
 
   const closeModal = () => setIsModalOpen(false)
   const closeDeleteModal = () => setIsModalDeleteOpen(false)
-  const [categories, setCategories] = useState<Category[]>([])
+
   useEffect(() => {
     window.context.getCategory().then(setCategories)
   }, [])
@@ -39,8 +40,9 @@ const Categories: React.FC = () => {
       // await window.context.
       console.log(data)
     } else {
-      // await window.context.cr
-      console.log(data)
+      const category = await window.context.createCategory(data)
+      setCategories([...categories, category])
+      closeModal()
     }
   }
   const handleDeleteCategory = (category: Category) => {

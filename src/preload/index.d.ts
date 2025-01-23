@@ -26,6 +26,7 @@ declare global {
       }) => Promise<User>
       updateUser: (args: { id: number; name: string; email: string; role: Role }) => Promise<User>
       getCategory: () => Promise<Category[]>
+      createCategory: (args: { name: string; description: string }) => Promise<Category>
     }
   }
 }
