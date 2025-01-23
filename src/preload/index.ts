@@ -53,7 +53,8 @@ try {
     createCategory: (args: { name: string; description: string }) =>
       ipcRenderer.invoke('createCategory', args),
     updateCategory: (args: { id: number; name: string; description: string }) =>
-      ipcRenderer.invoke('updateCategory', args)
+      ipcRenderer.invoke('updateCategory', args),
+    deleteCategory: (args: number) => ipcRenderer.invoke('deleteCategory', args)
   })
 } catch (error) {
   console.error(error)

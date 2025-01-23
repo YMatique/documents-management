@@ -37,8 +37,6 @@ const Categories: React.FC = () => {
 
   const handleCategorySubmit = async (data: { name: string; description: string }) => {
     if (editCategory) {
-      // await window.context.
-      // console.log(data)
       const updateCategory = { ...editCategory, ...data }
       await window.context.updateCategory(updateCategory)
       setCategories(
@@ -50,12 +48,16 @@ const Categories: React.FC = () => {
     }
     closeModal()
   }
-  const handleDeleteCategory = (category: Category) => {
-    setIsModalDeleteOpen(true)
-    console.log(category)
-
-    // setCategories(categories.filter((c) => c.id !== category.id))
+  const handleDeleteCategory = async () => {
+    if (deletingCategory) {
+      const isDeleted = await window.context.deleteCategory(deletingCategory)
+      if (isDeleted) {
+        setCategories(categories.filter((category) => category.id !== deletingCategory))
+      }
+    }
+    closeDeleteModal()
   }
+
   return (
     <div className="flex flex-col  text-sm">
       <HeaderPage className="mb-8">
@@ -72,7 +74,11 @@ const Categories: React.FC = () => {
       <div className="flex flex-col">
         <CategoryTable data={categories} onEdit={openEditModal} onDelete={openDeleteModal} />
       </div>
-      <Modal title="Adicionar Categoria" isOpen={isModalOpen} onClose={closeModal}>
+      <Modal
+        title={editCategory ? 'Editar Categoria' : 'Adicionar Categoria'}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      >
         <FormCategory
           initialData={editCategory}
           onCancel={closeModal}
@@ -84,7 +90,7 @@ const Categories: React.FC = () => {
         isOpen={isModalDeleteOpen}
         onClose={closeDeleteModal}
         title="Eliminar a Categoria"
-        onDelete={() => handleDeleteCategory}
+        onDelete={handleDeleteCategory}
       >
         <p className="text-gray-500 dark:text-neutral-500">
           Tem a certeza que pretende eliminar esta categoria da aplicação? <br /> Note que esta ação

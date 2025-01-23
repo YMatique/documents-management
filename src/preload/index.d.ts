@@ -28,6 +28,7 @@ declare global {
       getCategory: () => Promise<Category[]>
       createCategory: (args: { name: string; description: string }) => Promise<Category>
       updateCategory: (args: { id: number; name: string; description: string }) => Promise<Category>
+      deleteCategory: (args: number) => Promise<boolean>
     }
   }
 }
