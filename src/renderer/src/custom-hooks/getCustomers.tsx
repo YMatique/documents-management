@@ -1,7 +1,7 @@
 import { Customer } from '@prisma/client'
 import { useEffect, useState } from 'react'
 
-export default function getCustomersHook(): Array<Customer> {
+function getCustomersHook(): Array<Customer> {
   const [customers, setCustomers] = useState<Customer[]>([])
 
   useEffect(() => {
@@ -10,3 +10,5 @@ export default function getCustomersHook(): Array<Customer> {
 
   return customers
 }
+
+export default getCustomersHook

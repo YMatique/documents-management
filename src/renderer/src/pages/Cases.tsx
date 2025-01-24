@@ -37,7 +37,7 @@ const Cases: React.FC = () => {
     closeDeleteModal()
   }
 
-  const handleEditCase = (id: number) => {}
+  // const handleEditCase = (id: number) => {}
   return (
     <div className="flex flex-col  text-sm h-full">
       <HeaderPage className="mb-8">

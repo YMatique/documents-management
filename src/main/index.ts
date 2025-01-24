@@ -59,7 +59,7 @@ function createWindow(): void {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
@@ -86,8 +86,6 @@ app.whenReady().then(() => {
 
   // IPC test
   // ipcMain.on('ping', () => console.log('pong'))
-
-  // ipcMain.on()
 
   ipcMain.handle('deleteUser', (_, args: number) => new UserModel().delete(args))
   ipcMain.handle(
@@ -165,12 +163,6 @@ app.whenReady().then(() => {
     ) => CaseModel.update(data)
   )
   ipcMain.handle('deleteCase', (_, id: number) => CaseModel.delete(id))
-
-  // const ccc = async () => CaseModel.get()
-  // ccc().then((e) => {
-  //   console.log(e)
-  // })
-  // console.log(ccc())
 
   createWindow()
 

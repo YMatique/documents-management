@@ -11,7 +11,7 @@ export default function labeledCustomersHook(): Array<{ label: string; value: st
       auxCostumer.push({ label: customer.name, value: customer.id.toString() })
     })
     setCustomers(auxCostumer)
-  }, [])
+  }, [_constumers])
 
   // console.log(customers)
 

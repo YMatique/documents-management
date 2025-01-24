@@ -12,7 +12,7 @@ export default function labeledCategoriesHook(): Array<{ label: string; value: s
       auxCategory.push({ label: category.name, value: category.id.toString() })
     })
     setCategories(auxCategory)
-  }, [])
+  }, [_categories])
 
   return categories
 }
